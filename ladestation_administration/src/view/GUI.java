@@ -9,6 +9,7 @@ import controller.DatabaseController;
 import static java.awt.image.ImageObserver.WIDTH;
 import java.sql.SQLException;
 import model.ResultSetTableModel;
+import javax.sql.rowset.CachedRowSet;
 
 /**
  *
@@ -24,25 +25,6 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
     }
     
-    private void setInputFieldsEdibel()
-    {
-        CItabIDField.setEditable(true);
-        CItabFirstnameField.setEditable(true);
-        CItabLastnameField.setEditable(true);
-        CItabEmailField.setEditable(true);
-        CItabCreditLimitField.setEditable(true);
-        CItabBalanceField.setEditable(true);
-    }
-    
-    private void clearInputFields()
-    {
-        CItabIDField.setText("");
-        CItabFirstnameField.setText("");
-        CItabLastnameField.setText("");
-        CItabEmailField.setText("");
-        CItabCreditLimitField.setText("");
-        CItabBalanceField.setText("");
-    }
     
 
     /**
@@ -54,34 +36,162 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        addDialog = new javax.swing.JDialog();
+        addDialogIDLabel1 = new javax.swing.JLabel();
+        addDialogIDField1 = new javax.swing.JTextField();
+        addDialogFirstnameField1 = new javax.swing.JTextField();
+        addDialogNameLabel1 = new javax.swing.JLabel();
+        addDialogLastnameLabel1 = new javax.swing.JLabel();
+        addDialogLastnameField1 = new javax.swing.JTextField();
+        addDialogBalance = new javax.swing.JLabel();
+        addDialogBalanceField1 = new javax.swing.JTextField();
+        addDialogCreditLimitField1 = new javax.swing.JTextField();
+        addDialogCreditLimit = new javax.swing.JLabel();
+        addDialogEmailLabel = new javax.swing.JLabel();
+        CItabEmailField1 = new javax.swing.JTextField();
+        addDialogPhoneField1 = new javax.swing.JTextField();
+        addDialogObsLabel = new javax.swing.JLabel();
+        addDialogPhoneLabel = new javax.swing.JLabel();
+        addDialogDiscartButton = new javax.swing.JButton();
+        addDialogAcceptButton = new javax.swing.JButton();
         Customer_info_tab = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         CItab_add_button = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        CItabIDField = new javax.swing.JTextField();
-        CItab_ID_label = new javax.swing.JLabel();
-        CItab_name_label = new javax.swing.JLabel();
-        CItabFirstnameField = new javax.swing.JTextField();
-        CItabLastnameField = new javax.swing.JTextField();
-        CItab_lastname_label = new javax.swing.JLabel();
         CItab_edit_button = new javax.swing.JButton();
         CItab_delete_button = new javax.swing.JButton();
-        CItab_discard_button = new javax.swing.JButton();
-        CItab_accept_button = new javax.swing.JButton();
         CItab_Push_button = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        CItabEmailField = new javax.swing.JTextField();
-        CItabCreditLimitField = new javax.swing.JTextField();
-        CItabBalanceField = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         CItab_fetch_button = new javax.swing.JButton();
-        CItabPhoneField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+
+        addDialogIDLabel1.setText("ID:");
+
+        addDialogIDField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDialogIDField1ActionPerformed(evt);
+            }
+        });
+
+        addDialogFirstnameField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDialogFirstnameField1ActionPerformed(evt);
+            }
+        });
+
+        addDialogNameLabel1.setText("First name:");
+
+        addDialogLastnameLabel1.setText("Last name:");
+
+        addDialogBalance.setText("Balance:");
+
+        addDialogCreditLimitField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDialogCreditLimitField1ActionPerformed(evt);
+            }
+        });
+
+        addDialogCreditLimit.setText("Credit limit:");
+
+        addDialogEmailLabel.setText("Email:");
+
+        CItabEmailField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CItabEmailField1ActionPerformed(evt);
+            }
+        });
+
+        addDialogObsLabel.setText("OBS eg \"-200\"");
+
+        addDialogPhoneLabel.setText("Phone:");
+
+        addDialogDiscartButton.setText("Discart");
+        addDialogDiscartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDialogDiscartButtonActionPerformed(evt);
+            }
+        });
+
+        addDialogAcceptButton.setText("Accept");
+        addDialogAcceptButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDialogAcceptButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout addDialogLayout = new javax.swing.GroupLayout(addDialog.getContentPane());
+        addDialog.getContentPane().setLayout(addDialogLayout);
+        addDialogLayout.setHorizontalGroup(
+            addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addDialogNameLabel1)
+                    .addComponent(addDialogIDLabel1)
+                    .addComponent(addDialogLastnameLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addDialogLayout.createSequentialGroup()
+                        .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(addDialogLastnameField1)
+                            .addComponent(addDialogIDField1)
+                            .addComponent(addDialogFirstnameField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(addDialogEmailLabel)
+                            .addComponent(addDialogCreditLimit)
+                            .addComponent(addDialogBalance)))
+                    .addComponent(addDialogDiscartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addDialogLayout.createSequentialGroup()
+                        .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addDialogCreditLimitField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addDialogBalanceField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CItabEmailField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addDialogLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(addDialogPhoneLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addDialogPhoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addDialogLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addDialogObsLabel))))
+                    .addComponent(addDialogAcceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        addDialogLayout.setVerticalGroup(
+            addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addDialogIDField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addDialogIDLabel1)
+                    .addComponent(addDialogEmailLabel)
+                    .addComponent(CItabEmailField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addDialogPhoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addDialogPhoneLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addDialogNameLabel1)
+                    .addComponent(addDialogFirstnameField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addDialogCreditLimit)
+                    .addComponent(addDialogCreditLimitField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addDialogLastnameField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addDialogBalanceField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addDialogObsLabel)
+                    .addComponent(addDialogLastnameLabel1)
+                    .addComponent(addDialogBalance))
+                .addGap(18, 18, 18)
+                .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addDialogAcceptButton)
+                    .addComponent(addDialogDiscartButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,23 +229,15 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getColumn(0).setHeaderValue("ID");
+        jTable1.getColumnModel().getColumn(1).setHeaderValue("First name");
+        jTable1.getColumnModel().getColumn(2).setHeaderValue("Last name");
+        jTable1.getColumnModel().getColumn(3).setHeaderValue("balance");
+        jTable1.getColumnModel().getColumn(4).setHeaderValue("Credit limit");
+        jTable1.getColumnModel().getColumn(5).setHeaderValue("Email");
+        jTable1.getColumnModel().getColumn(6).setHeaderValue("Phone");
 
         jScrollPane2.setViewportView(jScrollPane1);
-
-        CItabIDField.setEditable(false);
-        CItabIDField.setText("jTextField1");
-
-        CItab_ID_label.setText("ID:");
-
-        CItab_name_label.setText("First name:");
-
-        CItabFirstnameField.setEditable(false);
-        CItabFirstnameField.setText("jTextField2");
-
-        CItabLastnameField.setEditable(false);
-        CItabLastnameField.setText("jTextField3");
-
-        CItab_lastname_label.setText("Last name:");
 
         CItab_edit_button.setText("Edit");
         CItab_edit_button.addActionListener(new java.awt.event.ActionListener() {
@@ -151,49 +253,9 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        CItab_discard_button.setText("Discard");
-
-        CItab_accept_button.setText("Accept");
-        CItab_accept_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CItab_accept_buttonActionPerformed(evt);
-            }
-        });
-
         CItab_Push_button.setText("Push");
 
-        jLabel4.setText("Email:");
-
-        jLabel5.setText("Credit limit:");
-
-        jLabel6.setText("Balance:");
-
-        CItabEmailField.setEditable(false);
-        CItabEmailField.setText("jTextField4");
-        CItabEmailField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CItabEmailFieldActionPerformed(evt);
-            }
-        });
-
-        CItabCreditLimitField.setEditable(false);
-        CItabCreditLimitField.setText("jTextField5");
-        CItabCreditLimitField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CItabCreditLimitFieldActionPerformed(evt);
-            }
-        });
-
-        CItabBalanceField.setEditable(false);
-        CItabBalanceField.setText("jTextField6");
-
-        jLabel7.setText("OBS eg \"-200\"");
-
         CItab_fetch_button.setText("Fetch");
-
-        CItabPhoneField.setText("jTextField1");
-
-        jLabel1.setText("Phone:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -202,54 +264,18 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(CItab_name_label)
-                            .addComponent(CItab_ID_label)
-                            .addComponent(CItab_lastname_label))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CItabLastnameField, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                            .addComponent(CItabIDField)
-                            .addComponent(CItabFirstnameField))
+                        .addComponent(CItab_add_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CItabCreditLimitField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CItabBalanceField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CItabEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CItabPhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(CItab_add_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(CItab_edit_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(CItab_delete_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(CItab_fetch_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(CItab_discard_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(CItab_accept_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(CItab_Push_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 391, Short.MAX_VALUE)))
+                        .addComponent(CItab_edit_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(CItab_delete_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(CItab_fetch_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(CItab_Push_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -260,36 +286,11 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(CItab_add_button)
                     .addComponent(CItab_edit_button)
                     .addComponent(CItab_delete_button)
-                    .addComponent(CItab_fetch_button))
+                    .addComponent(CItab_fetch_button)
+                    .addComponent(CItab_Push_button))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CItabIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CItab_ID_label)
-                    .addComponent(jLabel4)
-                    .addComponent(CItabEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CItabPhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CItab_name_label)
-                    .addComponent(CItabFirstnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(CItabCreditLimitField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CItabLastnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CItabBalanceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(CItab_lastname_label)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CItab_discard_button)
-                    .addComponent(CItab_accept_button)
-                    .addComponent(CItab_Push_button))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Customer_info_tab.addTab("Customer info", jPanel1);
@@ -302,7 +303,7 @@ public class GUI extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 453, Short.MAX_VALUE)
+            .addGap(0, 313, Short.MAX_VALUE)
         );
 
         Customer_info_tab.addTab("Event log", jPanel2);
@@ -321,45 +322,49 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CItab_accept_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_accept_buttonActionPerformed
-        // TODO add your handling code here:
-        try {
-        jTable1.getModel().setValueAt(CItabIDField.getText(), jTable1.getSelectedRow(), 0);
-        jTable1.getModel().setValueAt(CItabFirstnameField.getText(), jTable1.getSelectedRow(), 1);
-        jTable1.getModel().setValueAt(CItabLastnameField.getText(), jTable1.getSelectedRow(), 2);
-        jTable1.getModel().setValueAt(CItabBalanceField.getText(), jTable1.getSelectedRow(), 3);
-        jTable1.getModel().setValueAt(CItabCreditLimitField.getText(), jTable1.getSelectedRow(), 4);
-        jTable1.getModel().setValueAt(CItabEmailField.getText(), jTable1.getSelectedRow(), 5);
-        jTable1.getModel().setValueAt(CItabPhoneField.getText(), jTable1.getSelectedRow(), 6);
-        } catch (Exception e) {
-            System.out.println("Der skete en fejl, i \"CItab_accept_buttonActionPerformed\"");
-        }
-    }//GEN-LAST:event_CItab_accept_buttonActionPerformed
-
     private void CItab_delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_delete_buttonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CItab_delete_buttonActionPerformed
 
     private void CItab_edit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_edit_buttonActionPerformed
         // TODO add your handling code here:
-        setInputFieldsEdibel();
         
     }//GEN-LAST:event_CItab_edit_buttonActionPerformed
 
     private void CItab_add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_add_buttonActionPerformed
         // TODO add your handling code here:
-        setInputFieldsEdibel();
-        clearInputFields();
-        
+        addDialogClearInputFields();
+        addDialog.setVisible(true);
+        addDialog.pack();
     }//GEN-LAST:event_CItab_add_buttonActionPerformed
 
-    private void CItabEmailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItabEmailFieldActionPerformed
+    private void addDialogCreditLimitField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogCreditLimitField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CItabEmailFieldActionPerformed
+        
+    }//GEN-LAST:event_addDialogCreditLimitField1ActionPerformed
 
-    private void CItabCreditLimitFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItabCreditLimitFieldActionPerformed
+    private void CItabEmailField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItabEmailField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CItabCreditLimitFieldActionPerformed
+    }//GEN-LAST:event_CItabEmailField1ActionPerformed
+
+    private void addDialogFirstnameField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogFirstnameField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addDialogFirstnameField1ActionPerformed
+
+    private void addDialogDiscartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogDiscartButtonActionPerformed
+        // TODO add your handling code here:
+        addDialog.setVisible(false);
+    }//GEN-LAST:event_addDialogDiscartButtonActionPerformed
+
+    private void addDialogIDField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogIDField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addDialogIDField1ActionPerformed
+
+    private void addDialogAcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogAcceptButtonActionPerformed
+        // TODO add your handling code here:
+        
+        jTable1.getModel().insertRow(new Object[]{addDialogIDField1.getText(), "Column 2", "Column 3"});
+    }//GEN-LAST:event_addDialogAcceptButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -396,33 +401,45 @@ public class GUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CItabBalanceField;
-    private javax.swing.JTextField CItabCreditLimitField;
-    private javax.swing.JTextField CItabEmailField;
-    private javax.swing.JTextField CItabFirstnameField;
-    private javax.swing.JTextField CItabIDField;
-    private javax.swing.JTextField CItabLastnameField;
-    private javax.swing.JTextField CItabPhoneField;
-    private javax.swing.JLabel CItab_ID_label;
+    private javax.swing.JTextField CItabEmailField1;
     private javax.swing.JButton CItab_Push_button;
-    private javax.swing.JButton CItab_accept_button;
     private javax.swing.JButton CItab_add_button;
     private javax.swing.JButton CItab_delete_button;
-    private javax.swing.JButton CItab_discard_button;
     private javax.swing.JButton CItab_edit_button;
     private javax.swing.JButton CItab_fetch_button;
-    private javax.swing.JLabel CItab_lastname_label;
-    private javax.swing.JLabel CItab_name_label;
     private javax.swing.JTabbedPane Customer_info_tab;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JDialog addDialog;
+    private javax.swing.JButton addDialogAcceptButton;
+    private javax.swing.JLabel addDialogBalance;
+    private javax.swing.JTextField addDialogBalanceField1;
+    private javax.swing.JLabel addDialogCreditLimit;
+    private javax.swing.JTextField addDialogCreditLimitField1;
+    private javax.swing.JButton addDialogDiscartButton;
+    private javax.swing.JLabel addDialogEmailLabel;
+    private javax.swing.JTextField addDialogFirstnameField1;
+    private javax.swing.JTextField addDialogIDField1;
+    private javax.swing.JLabel addDialogIDLabel1;
+    private javax.swing.JTextField addDialogLastnameField1;
+    private javax.swing.JLabel addDialogLastnameLabel1;
+    private javax.swing.JLabel addDialogNameLabel1;
+    private javax.swing.JLabel addDialogObsLabel;
+    private javax.swing.JTextField addDialogPhoneField1;
+    private javax.swing.JLabel addDialogPhoneLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void addDialogClearInputFields() {
+        addDialogIDField1.setText("");
+        addDialogFirstnameField1.setText("");
+        addDialogLastnameField1.setText("");
+        addDialogEmailLabel.setText("");
+        addDialogCreditLimitField1.setText("");
+        addDialogBalanceField1.setText("");
+        addDialogPhoneField1.setText("");
+        
+    }
 }
