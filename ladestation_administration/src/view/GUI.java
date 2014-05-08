@@ -4,12 +4,16 @@
  */
 package view;
 
-import command.Invoker;
-import controller.DatabaseController;
-import static java.awt.image.ImageObserver.WIDTH;
+import java.sql.Connection;
 import java.sql.SQLException;
-import model.ResultSetTableModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sql.rowset.CachedRowSet;
+import javax.swing.table.DefaultTableModel;
+import model.*;
+
+
+
 
 /**
  *
@@ -17,15 +21,26 @@ import javax.sql.rowset.CachedRowSet;
  */
 public class GUI extends javax.swing.JFrame {
 
-    private Invoker invoker;
+    LadestationTableModel ltm = new LadestationTableModel();
+    
     /**
      * Creates new form GUI
      */
-    public GUI() {
+    public GUI() throws SQLException {
         initComponents();
+        jTable1.setModel(ltm);
+        ltm.addColumn("ID");
+        ltm.addColumn("First name");
+        ltm.addColumn("Last name");
+        ltm.addColumn("Email");
+        ltm.addColumn("Credit limit");
+        ltm.addColumn("Balance");
+        ltm.addColumn("Phone");
     }
     
+    //LadestationTableModel thismodel;
     
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,7 +63,7 @@ public class GUI extends javax.swing.JFrame {
         addDialogCreditLimitField1 = new javax.swing.JTextField();
         addDialogCreditLimit = new javax.swing.JLabel();
         addDialogEmailLabel = new javax.swing.JLabel();
-        CItabEmailField1 = new javax.swing.JTextField();
+        addDialogEmailField1 = new javax.swing.JTextField();
         addDialogPhoneField1 = new javax.swing.JTextField();
         addDialogObsLabel = new javax.swing.JLabel();
         addDialogPhoneLabel = new javax.swing.JLabel();
@@ -96,9 +111,9 @@ public class GUI extends javax.swing.JFrame {
 
         addDialogEmailLabel.setText("Email:");
 
-        CItabEmailField1.addActionListener(new java.awt.event.ActionListener() {
+        addDialogEmailField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CItabEmailField1ActionPerformed(evt);
+                addDialogEmailField1ActionPerformed(evt);
             }
         });
 
@@ -139,9 +154,9 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(addDialogFirstnameField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(addDialogEmailLabel)
                             .addComponent(addDialogCreditLimit)
-                            .addComponent(addDialogBalance)))
+                            .addComponent(addDialogBalance)
+                            .addComponent(addDialogEmailLabel)))
                     .addComponent(addDialogDiscartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +164,7 @@ public class GUI extends javax.swing.JFrame {
                         .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(addDialogCreditLimitField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addDialogBalanceField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CItabEmailField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(addDialogEmailField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(addDialogLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -170,7 +185,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(addDialogIDField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addDialogIDLabel1)
                     .addComponent(addDialogEmailLabel)
-                    .addComponent(CItabEmailField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addDialogEmailField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addDialogPhoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addDialogPhoneLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -254,8 +269,18 @@ public class GUI extends javax.swing.JFrame {
         });
 
         CItab_Push_button.setText("Push");
+        CItab_Push_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CItab_Push_buttonActionPerformed(evt);
+            }
+        });
 
         CItab_fetch_button.setText("Fetch");
+        CItab_fetch_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CItab_fetch_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -343,9 +368,9 @@ public class GUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_addDialogCreditLimitField1ActionPerformed
 
-    private void CItabEmailField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItabEmailField1ActionPerformed
+    private void addDialogEmailField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogEmailField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CItabEmailField1ActionPerformed
+    }//GEN-LAST:event_addDialogEmailField1ActionPerformed
 
     private void addDialogFirstnameField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogFirstnameField1ActionPerformed
         // TODO add your handling code here:
@@ -362,9 +387,20 @@ public class GUI extends javax.swing.JFrame {
 
     private void addDialogAcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogAcceptButtonActionPerformed
         // TODO add your handling code here:
-        
-        jTable1.getModel().insertRow(new Object[]{addDialogIDField1.getText(), "Column 2", "Column 3"});
+        ltm.addRow(new Object[]{addDialogIDField1.getText(), addDialogFirstnameField1.getText(), addDialogLastnameField1.getText(), addDialogBalanceField1.getText(), addDialogCreditLimitField1.getText(), addDialogEmailField1.getText(), addDialogPhoneField1.getText()});
+        Customer tempCustomer = new Customer(addDialogIDField1.getText(), addDialogFirstnameField1.getText(), addDialogLastnameField1.getText(), addDialogBalanceField1.getText(), addDialogCreditLimitField1.getText(), addDialogEmailField1.getText(), addDialogPhoneField1.getText(), "123");
+        //sendtodb(tempCustomer);
+        addDialog.setVisible(false);
     }//GEN-LAST:event_addDialogAcceptButtonActionPerformed
+
+    private void CItab_Push_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_Push_buttonActionPerformed
+        // TODO add your handling code here:
+        ltm.addColumn("name");
+    }//GEN-LAST:event_CItab_Push_buttonActionPerformed
+
+    private void CItab_fetch_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_fetch_buttonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CItab_fetch_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -396,12 +432,15 @@ public class GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUI().setVisible(true);
+                try {
+                    new GUI().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CItabEmailField1;
     private javax.swing.JButton CItab_Push_button;
     private javax.swing.JButton CItab_add_button;
     private javax.swing.JButton CItab_delete_button;
@@ -415,6 +454,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel addDialogCreditLimit;
     private javax.swing.JTextField addDialogCreditLimitField1;
     private javax.swing.JButton addDialogDiscartButton;
+    private javax.swing.JTextField addDialogEmailField1;
     private javax.swing.JLabel addDialogEmailLabel;
     private javax.swing.JTextField addDialogFirstnameField1;
     private javax.swing.JTextField addDialogIDField1;
@@ -436,7 +476,7 @@ public class GUI extends javax.swing.JFrame {
         addDialogIDField1.setText("");
         addDialogFirstnameField1.setText("");
         addDialogLastnameField1.setText("");
-        addDialogEmailLabel.setText("");
+        addDialogEmailField1.setText("");
         addDialogCreditLimitField1.setText("");
         addDialogBalanceField1.setText("");
         addDialogPhoneField1.setText("");
