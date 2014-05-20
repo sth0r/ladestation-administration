@@ -4,11 +4,14 @@
  */
 package view;
 
+import DAO.ChargingDerbyDAO;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sql.rowset.CachedRowSet;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.*;
 
@@ -22,7 +25,8 @@ import model.*;
 public class GUI extends javax.swing.JFrame {
 
     LadestationTableModel ltm = new LadestationTableModel();
-    
+    ChargingDerbyDAO DAO = new ChargingDerbyDAO();
+    ResultSetTableModel rstm = new ResultSetTableModel();
     /**
      * Creates new form GUI
      */
@@ -32,10 +36,11 @@ public class GUI extends javax.swing.JFrame {
         ltm.addColumn("ID");
         ltm.addColumn("First name");
         ltm.addColumn("Last name");
-        ltm.addColumn("Email");
-        ltm.addColumn("Credit limit");
         ltm.addColumn("Balance");
+        ltm.addColumn("Credit limit");
+        ltm.addColumn("Email");
         ltm.addColumn("Phone");
+        
     }
     
     //LadestationTableModel thismodel;
@@ -69,26 +74,31 @@ public class GUI extends javax.swing.JFrame {
         addDialogPhoneLabel = new javax.swing.JLabel();
         addDialogDiscartButton = new javax.swing.JButton();
         addDialogAcceptButton = new javax.swing.JButton();
+        askDialog = new javax.swing.JDialog();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
         Customer_info_tab = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         CItab_add_button = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         CItab_edit_button = new javax.swing.JButton();
         CItab_delete_button = new javax.swing.JButton();
         CItab_Push_button = new javax.swing.JButton();
         CItab_fetch_button = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
 
         addDialogIDLabel1.setText("ID:");
 
+        addDialogIDField1.setNextFocusableComponent(addDialogFirstnameField1);
         addDialogIDField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addDialogIDField1ActionPerformed(evt);
             }
         });
 
+        addDialogFirstnameField1.setNextFocusableComponent(addDialogLastnameField1);
         addDialogFirstnameField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addDialogFirstnameField1ActionPerformed(evt);
@@ -99,8 +109,13 @@ public class GUI extends javax.swing.JFrame {
 
         addDialogLastnameLabel1.setText("Last name:");
 
+        addDialogLastnameField1.setNextFocusableComponent(addDialogEmailField1);
+
         addDialogBalance.setText("Balance:");
 
+        addDialogBalanceField1.setNextFocusableComponent(addDialogPhoneField1);
+
+        addDialogCreditLimitField1.setNextFocusableComponent(addDialogBalanceField1);
         addDialogCreditLimitField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addDialogCreditLimitField1ActionPerformed(evt);
@@ -111,11 +126,14 @@ public class GUI extends javax.swing.JFrame {
 
         addDialogEmailLabel.setText("Email:");
 
+        addDialogEmailField1.setNextFocusableComponent(addDialogCreditLimitField1);
         addDialogEmailField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addDialogEmailField1ActionPerformed(evt);
             }
         });
+
+        addDialogPhoneField1.setNextFocusableComponent(addDialogIDField1);
 
         addDialogObsLabel.setText("OBS eg \"-200\"");
 
@@ -208,12 +226,83 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jButton1.setText("Fetch");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Do not fetch");
+
+        jFormattedTextField2.setText("jFormattedTextField2");
+        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout askDialogLayout = new javax.swing.GroupLayout(askDialog.getContentPane());
+        askDialog.getContentPane().setLayout(askDialogLayout);
+        askDialogLayout.setHorizontalGroup(
+            askDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(askDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(askDialogLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        askDialogLayout.setVerticalGroup(
+            askDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(askDialogLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90)
+                .addGroup(askDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         CItab_add_button.setText("Add");
         CItab_add_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CItab_add_buttonActionPerformed(evt);
+            }
+        });
+
+        CItab_edit_button.setText("Edit");
+        CItab_edit_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CItab_edit_buttonActionPerformed(evt);
+            }
+        });
+
+        CItab_delete_button.setText("Delete");
+        CItab_delete_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CItab_delete_buttonActionPerformed(evt);
+            }
+        });
+
+        CItab_Push_button.setText("Push");
+        CItab_Push_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CItab_Push_buttonActionPerformed(evt);
+            }
+        });
+
+        CItab_fetch_button.setText("Fetch");
+        CItab_fetch_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CItab_fetch_buttonActionPerformed(evt);
             }
         });
 
@@ -252,36 +341,6 @@ public class GUI extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(5).setHeaderValue("Email");
         jTable1.getColumnModel().getColumn(6).setHeaderValue("Phone");
 
-        jScrollPane2.setViewportView(jScrollPane1);
-
-        CItab_edit_button.setText("Edit");
-        CItab_edit_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CItab_edit_buttonActionPerformed(evt);
-            }
-        });
-
-        CItab_delete_button.setText("Delete");
-        CItab_delete_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CItab_delete_buttonActionPerformed(evt);
-            }
-        });
-
-        CItab_Push_button.setText("Push");
-        CItab_Push_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CItab_Push_buttonActionPerformed(evt);
-            }
-        });
-
-        CItab_fetch_button.setText("Fetch");
-        CItab_fetch_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CItab_fetch_buttonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -289,7 +348,6 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(CItab_add_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -299,9 +357,9 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(CItab_fetch_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(CItab_Push_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(CItab_Push_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,8 +372,8 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(CItab_fetch_button)
                     .addComponent(CItab_Push_button))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         Customer_info_tab.addTab("Customer info", jPanel1);
@@ -324,11 +382,11 @@ public class GUI extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 785, Short.MAX_VALUE)
+            .addGap(0, 766, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 313, Short.MAX_VALUE)
+            .addGap(0, 618, Short.MAX_VALUE)
         );
 
         Customer_info_tab.addTab("Event log", jPanel2);
@@ -395,13 +453,49 @@ public class GUI extends javax.swing.JFrame {
 
     private void CItab_Push_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_Push_buttonActionPerformed
         // TODO add your handling code here:
-        ltm.addColumn("name");
     }//GEN-LAST:event_CItab_Push_buttonActionPerformed
 
     private void CItab_fetch_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_fetch_buttonActionPerformed
-        // TODO add your handling code here:
+        boolean dummy = ask("If you fetch change will be lost","fetch","do not fetch");
+        if(dummy)
+        {
+            try {
+                // TODO add your handling code here:
+                DAO.getCustomersTableFromDB(rstm);            
+            } catch (SQLException ex) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            int ROW = rstm.getRowCount();
+            int ROWindex = 0;
+            while (ROW != ROWindex)
+            {
+                ltm.addRow(new Object[]{rstm.getValueAt(ROWindex, 0), rstm.getValueAt(ROWindex, 1), rstm.getValueAt(ROWindex, 2), rstm.getValueAt(ROWindex, 3), rstm.getValueAt(ROWindex, 4), rstm.getValueAt(ROWindex, 5), rstm.getValueAt(ROWindex, 6)});
+                ROWindex++;
+            }
+        }
     }//GEN-LAST:event_CItab_fetch_buttonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+;
+    private boolean ask(String question, String trueanswer, String falseanswer){
+        Object[] options = {trueanswer,
+                    falseanswer};
+        int n = JOptionPane.showOptionDialog(null,
+            question,
+            "A Silly Question",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,     //do not use a custom Icon
+            options,  //the titles of buttons
+            options[0]); //default button title
+        return (n == 0);
+    }
     /**
      * @param args the command line arguments
      */
@@ -465,10 +559,13 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel addDialogObsLabel;
     private javax.swing.JTextField addDialogPhoneField1;
     private javax.swing.JLabel addDialogPhoneLabel;
+    private javax.swing.JDialog askDialog;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 

@@ -16,81 +16,115 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author ibr
  */
-public class ResultSetTableModel extends AbstractTableModel {
+public class ResultSetTableModel extends AbstractTableModel
+{
 
     private RowSet cachedRowSet;
     private ResultSetMetaData resultSetMetaData;
 
-    public Object getValueAt(int rowIndex, int columnIndex) {
-        try {
-            if (cachedRowSet != null) {
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex)
+    {
+        try
+        {
+            if (cachedRowSet != null)
+            {
                 cachedRowSet.absolute(rowIndex + 1);
                 return cachedRowSet.getObject(columnIndex + 1);
             }
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex)
+        {
             Logger.getLogger(ResultSetTableModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "";
     }
 
-    public void setRowSet(CachedRowSetImpl cashedRowSet) {
+    public void setRowSet(CachedRowSetImpl cashedRowSet)
+    {
         this.cachedRowSet = cashedRowSet;
-        try {
-            if (cachedRowSet != null) {
+        try
+        {
+            if (cachedRowSet != null)
+            {
                 this.resultSetMetaData = cachedRowSet.getMetaData();
                 this.fireTableStructureChanged();
             }
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex)
+        {
             Logger.getLogger(ResultSetTableModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public Class<?> getColumnClass(int columnIndex) {
-        try {
+    public Class<?> getColumnClass(int columnIndex)
+    {
+        try
+        {
             String className = resultSetMetaData.getColumnClassName(columnIndex + 1);
             return Class.forName(className);
-        } catch (ClassNotFoundException ex) {
+        } 
+        catch (ClassNotFoundException ex)
+        {
             Logger.getLogger(ResultSetTableModel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex)
+        {
             Logger.getLogger(ResultSetTableModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         return Object.class;
     }
 
-    public int getRowCount() {
-        try {
-            if (cachedRowSet != null) {
+    @Override
+    public int getRowCount()
+    {
+        try
+        {
+            if (cachedRowSet != null)
+            {
                 cachedRowSet.last();
                 return cachedRowSet.getRow();
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(ResultSetTableModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return 0;
-    }
-
-    public int getColumnCount() {
-        try {
-            if (resultSetMetaData != null) {
-                return resultSetMetaData.getColumnCount();
-            }
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex)
+        {
             Logger.getLogger(ResultSetTableModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
     }
 
     @Override
-    public String getColumnName(int column) {
-        try {
-            if (resultSetMetaData != null) {
+    public int getColumnCount()
+    {
+        try
+        {
+            if (resultSetMetaData != null)
+            {
+                return resultSetMetaData.getColumnCount();
+            }
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(ResultSetTableModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    @Override
+    public String getColumnName(int column)
+    {
+        try
+        {
+            if (resultSetMetaData != null)
+            {
                 return resultSetMetaData.getColumnName(column + 1);
             }
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex)
+        {
             Logger.getLogger(ResultSetTableModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "";
     }
-
 }
