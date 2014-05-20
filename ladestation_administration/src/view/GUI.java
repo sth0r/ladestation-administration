@@ -5,6 +5,7 @@
 package view;
 
 import DAO.ChargingDerbyDAO;
+import controller.GUIController;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -25,8 +26,8 @@ import model.*;
 public class GUI extends javax.swing.JFrame {
 
     LadestationTableModel ltm = new LadestationTableModel();
-    ChargingDerbyDAO DAO = new ChargingDerbyDAO();
-    ResultSetTableModel rstm = new ResultSetTableModel();
+    GUIController controller = new GUIController();
+    String addDialogMode;
     /**
      * Creates new form GUI
      */
@@ -74,17 +75,12 @@ public class GUI extends javax.swing.JFrame {
         addDialogPhoneLabel = new javax.swing.JLabel();
         addDialogDiscartButton = new javax.swing.JButton();
         addDialogAcceptButton = new javax.swing.JButton();
-        askDialog = new javax.swing.JDialog();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
         Customer_info_tab = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         CItab_add_button = new javax.swing.JButton();
         CItab_edit_button = new javax.swing.JButton();
         CItab_delete_button = new javax.swing.JButton();
-        CItab_Push_button = new javax.swing.JButton();
-        CItab_fetch_button = new javax.swing.JButton();
+        CItab_refresh_button = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -92,18 +88,8 @@ public class GUI extends javax.swing.JFrame {
         addDialogIDLabel1.setText("ID:");
 
         addDialogIDField1.setNextFocusableComponent(addDialogFirstnameField1);
-        addDialogIDField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addDialogIDField1ActionPerformed(evt);
-            }
-        });
 
         addDialogFirstnameField1.setNextFocusableComponent(addDialogLastnameField1);
-        addDialogFirstnameField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addDialogFirstnameField1ActionPerformed(evt);
-            }
-        });
 
         addDialogNameLabel1.setText("First name:");
 
@@ -116,22 +102,12 @@ public class GUI extends javax.swing.JFrame {
         addDialogBalanceField1.setNextFocusableComponent(addDialogPhoneField1);
 
         addDialogCreditLimitField1.setNextFocusableComponent(addDialogBalanceField1);
-        addDialogCreditLimitField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addDialogCreditLimitField1ActionPerformed(evt);
-            }
-        });
 
         addDialogCreditLimit.setText("Credit limit:");
 
         addDialogEmailLabel.setText("Email:");
 
         addDialogEmailField1.setNextFocusableComponent(addDialogCreditLimitField1);
-        addDialogEmailField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addDialogEmailField1ActionPerformed(evt);
-            }
-        });
 
         addDialogPhoneField1.setNextFocusableComponent(addDialogIDField1);
 
@@ -226,49 +202,6 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Fetch");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Do not fetch");
-
-        jFormattedTextField2.setText("jFormattedTextField2");
-        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout askDialogLayout = new javax.swing.GroupLayout(askDialog.getContentPane());
-        askDialog.getContentPane().setLayout(askDialogLayout);
-        askDialogLayout.setHorizontalGroup(
-            askDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(askDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(askDialogLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        askDialogLayout.setVerticalGroup(
-            askDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(askDialogLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90)
-                .addGroup(askDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         CItab_add_button.setText("Add");
@@ -292,17 +225,10 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        CItab_Push_button.setText("Push");
-        CItab_Push_button.addActionListener(new java.awt.event.ActionListener() {
+        CItab_refresh_button.setText("Refresh");
+        CItab_refresh_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CItab_Push_buttonActionPerformed(evt);
-            }
-        });
-
-        CItab_fetch_button.setText("Fetch");
-        CItab_fetch_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CItab_fetch_buttonActionPerformed(evt);
+                CItab_refresh_buttonActionPerformed(evt);
             }
         });
 
@@ -355,9 +281,7 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(CItab_delete_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(CItab_fetch_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(CItab_Push_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CItab_refresh_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -369,8 +293,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(CItab_add_button)
                     .addComponent(CItab_edit_button)
                     .addComponent(CItab_delete_button)
-                    .addComponent(CItab_fetch_button)
-                    .addComponent(CItab_Push_button))
+                    .addComponent(CItab_refresh_button))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(139, Short.MAX_VALUE))
@@ -407,81 +330,58 @@ public class GUI extends javax.swing.JFrame {
 
     private void CItab_delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_delete_buttonActionPerformed
         // TODO add your handling code here:
+        int selectedRow = this.jTable1.getSelectedRow();
+        String UID = (String) this.jTable1.getValueAt(selectedRow, 0);
+        controller.deleteCustomer(UID);
     }//GEN-LAST:event_CItab_delete_buttonActionPerformed
 
     private void CItab_edit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_edit_buttonActionPerformed
         // TODO add your handling code here:
-        
+        int selectedRow = this.jTable1.getSelectedRow();
+        String UID = (String) this.jTable1.getValueAt(selectedRow, 0);
+        Customer tempCustomer = this.controller.getCustomer(UID);
+        this.addDialogIDField1.setText(tempCustomer.getUID());
+        this.addDialogFirstnameField1.setText(tempCustomer.getFirstName());
+        this.addDialogLastnameField1.setText(tempCustomer.getLastName());
+        this.addDialogBalanceField1.setText(tempCustomer.getBalance());
+        this.addDialogCreditLimitField1.setText(tempCustomer.getCreditLimit());
+        this.addDialogEmailField1.setText(tempCustomer.getEmail());
+        this.addDialogPhoneField1.setText(tempCustomer.getTlf());
+        this.addDialogIDField1.setEditable(false);
+        this.addDialogBalanceField1.setEditable(false);
+        addDialogMode("edit");
+        addDialog.setVisible(true);
+        addDialog.pack();
     }//GEN-LAST:event_CItab_edit_buttonActionPerformed
 
     private void CItab_add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_add_buttonActionPerformed
         // TODO add your handling code here:
         addDialogClearInputFields();
+        addDialogMode("add");
         addDialog.setVisible(true);
         addDialog.pack();
     }//GEN-LAST:event_CItab_add_buttonActionPerformed
-
-    private void addDialogCreditLimitField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogCreditLimitField1ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_addDialogCreditLimitField1ActionPerformed
-
-    private void addDialogEmailField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogEmailField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addDialogEmailField1ActionPerformed
-
-    private void addDialogFirstnameField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogFirstnameField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addDialogFirstnameField1ActionPerformed
 
     private void addDialogDiscartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogDiscartButtonActionPerformed
         // TODO add your handling code here:
         addDialog.setVisible(false);
     }//GEN-LAST:event_addDialogDiscartButtonActionPerformed
 
-    private void addDialogIDField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogIDField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addDialogIDField1ActionPerformed
-
     private void addDialogAcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogAcceptButtonActionPerformed
         // TODO add your handling code here:
-        ltm.addRow(new Object[]{addDialogIDField1.getText(), addDialogFirstnameField1.getText(), addDialogLastnameField1.getText(), addDialogBalanceField1.getText(), addDialogCreditLimitField1.getText(), addDialogEmailField1.getText(), addDialogPhoneField1.getText()});
         Customer tempCustomer = new Customer(addDialogIDField1.getText(), addDialogFirstnameField1.getText(), addDialogLastnameField1.getText(), addDialogBalanceField1.getText(), addDialogCreditLimitField1.getText(), addDialogEmailField1.getText(), addDialogPhoneField1.getText(), "123");
+        controller.editCustomer(tempCustomer,addDialogMode);
+        controller.getAllCustomers(ltm);
         //sendtodb(tempCustomer);
         addDialog.setVisible(false);
     }//GEN-LAST:event_addDialogAcceptButtonActionPerformed
 
-    private void CItab_Push_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_Push_buttonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CItab_Push_buttonActionPerformed
-
-    private void CItab_fetch_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_fetch_buttonActionPerformed
-        boolean dummy = ask("If you fetch change will be lost","fetch","do not fetch");
-        if(dummy)
+    private void CItab_refresh_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_refresh_buttonActionPerformed
+        if(ask("If you refresh change will be lost","fetch","do not fetch"))
         {
-            try {
-                // TODO add your handling code here:
-                DAO.getCustomersTableFromDB(rstm);            
-            } catch (SQLException ex) {
-                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            int ROW = rstm.getRowCount();
-            int ROWindex = 0;
-            while (ROW != ROWindex)
-            {
-                ltm.addRow(new Object[]{rstm.getValueAt(ROWindex, 0), rstm.getValueAt(ROWindex, 1), rstm.getValueAt(ROWindex, 2), rstm.getValueAt(ROWindex, 3), rstm.getValueAt(ROWindex, 4), rstm.getValueAt(ROWindex, 5), rstm.getValueAt(ROWindex, 6)});
-                ROWindex++;
-            }
+            controller.getAllCustomers(ltm);   
         }
-    }//GEN-LAST:event_CItab_fetch_buttonActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+    }//GEN-LAST:event_CItab_refresh_buttonActionPerformed
 ;
     private boolean ask(String question, String trueanswer, String falseanswer){
         Object[] options = {trueanswer,
@@ -535,11 +435,10 @@ public class GUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CItab_Push_button;
     private javax.swing.JButton CItab_add_button;
     private javax.swing.JButton CItab_delete_button;
     private javax.swing.JButton CItab_edit_button;
-    private javax.swing.JButton CItab_fetch_button;
+    private javax.swing.JButton CItab_refresh_button;
     private javax.swing.JTabbedPane Customer_info_tab;
     private javax.swing.JDialog addDialog;
     private javax.swing.JButton addDialogAcceptButton;
@@ -559,10 +458,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel addDialogObsLabel;
     private javax.swing.JTextField addDialogPhoneField1;
     private javax.swing.JLabel addDialogPhoneLabel;
-    private javax.swing.JDialog askDialog;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -579,4 +474,8 @@ public class GUI extends javax.swing.JFrame {
         addDialogPhoneField1.setText("");
         
     }
+
+    private void addDialogMode(String mode) {
+        addDialogMode = mode;
+        }
 }
