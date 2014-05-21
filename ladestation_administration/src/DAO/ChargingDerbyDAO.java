@@ -280,7 +280,7 @@ public class ChargingDerbyDAO implements ChargingDAO
     @Override
     public void getCustomersTableFromDB(ResultSetTableModel receiver) throws java.sql.SQLException
     {    
-        String sQLCommand = "SELECT UID,FIRSTNAME,LASTNAME,balance,creditLimit,email,tlf FROM CUSTOMERS"; // Avoid getting password colum
+        String sQLCommand = "SELECT UID,firstName,lastName,balance,creditLimit,email,tlf FROM CUSTOMERS"; // Avoid getting password colum
         try (Connection con = DerbyDAOFactory.createConnection();
             PreparedStatement stmt = con.prepareStatement(sQLCommand, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);)
         {
@@ -314,9 +314,10 @@ public class ChargingDerbyDAO implements ChargingDAO
     }
 
     @Override
-    public void chargeEvent(String taID, String costumerID, String stopTimeStamp, ResultSetTableModel receiver) throws java.sql.SQLException
+    public void chargeEvent(String taID, String costumerID, String stopTimeStamp, double price)
     {
-        String sQLCommand = "INSERT INTO CHARGINGSTATS (TAID, stopped, UID) VALUES ('"+taID+"','"+stopTimeStamp+"','"+costumerID+"')";
+        String sQLCommand = "UPDATE CHARGINGSTATS SET stopped = "+stopTimeStamp+", UID = "+costumerID+", WHERE TAID = '"+taID+"'";
+
         try (Connection con = DerbyDAOFactory.createConnection();
             PreparedStatement stmt = con.prepareStatement(sQLCommand, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);)
         {
@@ -324,8 +325,24 @@ public class ChargingDerbyDAO implements ChargingDAO
             CachedRowSetImpl cachedRowSet = new CachedRowSetImpl();
             cachedRowSet.populate(resultSet);
             con.close();
-            receiver.setRowSet(cachedRowSet);
         }
+        catch (SQLException e){
+            System.out.print("SQL Fail!" + e.getMessage());
+        }
+        
+        double newprice = balanceRequest(costumerID) - price; //Burde måske ikke foregå i DAO
+        sQLCommand = "UPDATE COSTUMERS SET BALANCE = "+newprice+", WHERE UID = '"+costumerID+"'";
+        try (Connection con = DerbyDAOFactory.createConnection();
+            PreparedStatement stmt = con.prepareStatement(sQLCommand, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);)
+        {
+            ResultSet resultSet = stmt.executeQuery();
+            CachedRowSetImpl cachedRowSet = new CachedRowSetImpl();
+            cachedRowSet.populate(resultSet);
+        }
+        catch (SQLException e){
+            System.out.print("SQL Fail!" + e.getMessage());
+        }
+          
     }
 
     @Override
@@ -352,7 +369,7 @@ public class ChargingDerbyDAO implements ChargingDAO
     @Override
     public double balanceRequest(String costumerID)
     {
-        return Double.parseDouble(findByUID(costumerID).getBalance());
+        return findByUID(costumerID).getBalance();
     }
     
     // From Server to Charger
@@ -377,8 +394,8 @@ public class ChargingDerbyDAO implements ChargingDAO
         String uID = resultSet.getString("UID");
         String firstName = resultSet.getString("firstName");
         String lastName = resultSet.getString("lastName");
-        String balance = resultSet.getString("balance");
-        String creditLimit = resultSet.getString("creditLimit");
+        double balance = resultSet.getDouble("balance");
+        double creditLimit = resultSet.getDouble("creditLimit");
         String email = resultSet.getString("email");
         String tlf = resultSet.getString("tlf");
         String password = resultSet.getString("password");
@@ -399,5 +416,27 @@ public class ChargingDerbyDAO implements ChargingDAO
     {
         double price = resultSet.getDouble("Price");
         return new Price(price);
+    }
+
+    public void addCustomerToDB(Customer tempCustomer) throws SQLException {
+        
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void editCustomerFromDB(Customer tempCustomer) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void deleteCustomerFromDB(String uID) throws SQLException 
+    {
+        String sQLCommand = "DELETE FROM CUSTOMERS WHERE UID = '"+uID+"'";
+        try (Connection con = DerbyDAOFactory.createConnection();
+            PreparedStatement stmt = con.prepareStatement(sQLCommand, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);)
+        {
+            stmt.executeUpdate();
+            con.close();
+        }
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

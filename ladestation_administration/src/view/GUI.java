@@ -343,8 +343,8 @@ public class GUI extends javax.swing.JFrame {
         this.addDialogIDField1.setText(tempCustomer.getUID());
         this.addDialogFirstnameField1.setText(tempCustomer.getFirstName());
         this.addDialogLastnameField1.setText(tempCustomer.getLastName());
-        this.addDialogBalanceField1.setText(tempCustomer.getBalance());
-        this.addDialogCreditLimitField1.setText(tempCustomer.getCreditLimit());
+        this.addDialogBalanceField1.setText(String.valueOf(tempCustomer.getBalance()));
+        this.addDialogCreditLimitField1.setText(String.valueOf(tempCustomer.getCreditLimit()));
         this.addDialogEmailField1.setText(tempCustomer.getEmail());
         this.addDialogPhoneField1.setText(tempCustomer.getTlf());
         this.addDialogIDField1.setEditable(false);
@@ -369,7 +369,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void addDialogAcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogAcceptButtonActionPerformed
         // TODO add your handling code here:
-        Customer tempCustomer = new Customer(addDialogIDField1.getText(), addDialogFirstnameField1.getText(), addDialogLastnameField1.getText(), addDialogBalanceField1.getText(), addDialogCreditLimitField1.getText(), addDialogEmailField1.getText(), addDialogPhoneField1.getText(), "123");
+        Customer tempCustomer = new Customer(addDialogIDField1.getText(), addDialogFirstnameField1.getText(), addDialogLastnameField1.getText(), Double.parseDouble(addDialogBalanceField1.getText()), Double.parseDouble(addDialogCreditLimitField1.getText()) , addDialogEmailField1.getText(), addDialogPhoneField1.getText(), "123");
         controller.editCustomer(tempCustomer,addDialogMode);
         controller.getAllCustomers(ltm);
         //sendtodb(tempCustomer);

@@ -69,7 +69,11 @@ ResultSetTableModel rstm = new ResultSetTableModel();
     }
 
     public void deleteCustomer(String UID) {
-        this.DAO.deleteCustomerFromDB(UID);
+        try {
+            this.DAO.deleteCustomerFromDB(UID);
+        } catch (SQLException ex) {
+            Logger.getLogger(GUIController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public Customer getCustomer(String UID) {
