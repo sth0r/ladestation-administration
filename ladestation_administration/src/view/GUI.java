@@ -22,7 +22,7 @@ public class GUI extends javax.swing.JFrame {
 
     LadestationTableModel ltm = new LadestationTableModel();
     GUIController controller = new GUIController();
-    String addDialogMode;
+    String editDialogMode;
     /**
      * Creates new form GUI
      */
@@ -52,26 +52,26 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        addDialog = new javax.swing.JDialog();
-        addDialogIDLabel1 = new javax.swing.JLabel();
-        addDialogIDField1 = new javax.swing.JTextField();
-        addDialogFirstnameField1 = new javax.swing.JTextField();
-        addDialogNameLabel1 = new javax.swing.JLabel();
-        addDialogLastnameLabel1 = new javax.swing.JLabel();
-        addDialogLastnameField1 = new javax.swing.JTextField();
-        addDialogBalance = new javax.swing.JLabel();
-        addDialogBalanceField1 = new javax.swing.JTextField();
-        addDialogCreditLimitField1 = new javax.swing.JTextField();
-        addDialogCreditLimit = new javax.swing.JLabel();
-        addDialogEmailLabel = new javax.swing.JLabel();
-        addDialogEmailField1 = new javax.swing.JTextField();
-        addDialogPhoneField1 = new javax.swing.JTextField();
-        addDialogObsLabel = new javax.swing.JLabel();
-        addDialogPhoneLabel = new javax.swing.JLabel();
-        addDialogDiscartButton = new javax.swing.JButton();
-        addDialogAcceptButton = new javax.swing.JButton();
+        editDialog = new javax.swing.JDialog();
+        editDialogIDLabel1 = new javax.swing.JLabel();
+        editDialogIDField1 = new javax.swing.JTextField();
+        editDialogFirstnameField1 = new javax.swing.JTextField();
+        editDialogNameLabel1 = new javax.swing.JLabel();
+        editDialogLastnameLabel1 = new javax.swing.JLabel();
+        editDialogLastnameField1 = new javax.swing.JTextField();
+        editDialogBalance = new javax.swing.JLabel();
+        editDialogBalanceField = new javax.swing.JTextField();
+        editDialogCreditLimitField = new javax.swing.JTextField();
+        editDialogCreditLimit = new javax.swing.JLabel();
+        editDialogEmailLabel = new javax.swing.JLabel();
+        editDialogEmailField = new javax.swing.JTextField();
+        editDialogPhoneField1 = new javax.swing.JTextField();
+        editDialogObsLabel = new javax.swing.JLabel();
+        editDialogPhoneLabel = new javax.swing.JLabel();
+        editDialogDiscartButton = new javax.swing.JButton();
+        editDialogAcceptButton = new javax.swing.JButton();
         balanceDialog = new javax.swing.JDialog();
-        balanceAmountLabel = new javax.swing.JTextField();
+        balanceAmountField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         BalanceUIDLabel = new javax.swing.JLabel();
@@ -80,7 +80,7 @@ public class GUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        balanceOkButton = new javax.swing.JButton();
         Customer_info_tab = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         CItab_add_button = new javax.swing.JButton();
@@ -92,126 +92,126 @@ public class GUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
-        addDialogIDLabel1.setText("ID:");
+        editDialogIDLabel1.setText("ID:");
 
-        addDialogIDField1.setNextFocusableComponent(addDialogFirstnameField1);
+        editDialogIDField1.setNextFocusableComponent(editDialogFirstnameField1);
 
-        addDialogFirstnameField1.setNextFocusableComponent(addDialogLastnameField1);
+        editDialogFirstnameField1.setNextFocusableComponent(editDialogLastnameField1);
 
-        addDialogNameLabel1.setText("First name:");
+        editDialogNameLabel1.setText("First name:");
 
-        addDialogLastnameLabel1.setText("Last name:");
+        editDialogLastnameLabel1.setText("Last name:");
 
-        addDialogLastnameField1.setNextFocusableComponent(addDialogEmailField1);
+        editDialogLastnameField1.setNextFocusableComponent(editDialogEmailField);
 
-        addDialogBalance.setText("Balance:");
+        editDialogBalance.setText("Balance:");
 
-        addDialogBalanceField1.setNextFocusableComponent(addDialogPhoneField1);
+        editDialogBalanceField.setNextFocusableComponent(editDialogPhoneField1);
 
-        addDialogCreditLimitField1.setNextFocusableComponent(addDialogBalanceField1);
+        editDialogCreditLimitField.setNextFocusableComponent(editDialogBalanceField);
 
-        addDialogCreditLimit.setText("Credit limit:");
+        editDialogCreditLimit.setText("Credit limit:");
 
-        addDialogEmailLabel.setText("Email:");
+        editDialogEmailLabel.setText("Email:");
 
-        addDialogEmailField1.setNextFocusableComponent(addDialogCreditLimitField1);
+        editDialogEmailField.setNextFocusableComponent(editDialogCreditLimitField);
 
-        addDialogPhoneField1.setNextFocusableComponent(addDialogIDField1);
+        editDialogPhoneField1.setNextFocusableComponent(editDialogIDField1);
 
-        addDialogObsLabel.setText("OBS eg \"-200\"");
+        editDialogObsLabel.setText("OBS eg \"-200\"");
 
-        addDialogPhoneLabel.setText("Phone:");
+        editDialogPhoneLabel.setText("Phone:");
 
-        addDialogDiscartButton.setText("Discart");
-        addDialogDiscartButton.addActionListener(new java.awt.event.ActionListener() {
+        editDialogDiscartButton.setText("Discart");
+        editDialogDiscartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addDialogDiscartButtonActionPerformed(evt);
+                editDialogDiscartButtonActionPerformed(evt);
             }
         });
 
-        addDialogAcceptButton.setText("Accept");
-        addDialogAcceptButton.addActionListener(new java.awt.event.ActionListener() {
+        editDialogAcceptButton.setText("Accept");
+        editDialogAcceptButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addDialogAcceptButtonActionPerformed(evt);
+                editDialogAcceptButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout addDialogLayout = new javax.swing.GroupLayout(addDialog.getContentPane());
-        addDialog.getContentPane().setLayout(addDialogLayout);
-        addDialogLayout.setHorizontalGroup(
-            addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addDialogLayout.createSequentialGroup()
+        javax.swing.GroupLayout editDialogLayout = new javax.swing.GroupLayout(editDialog.getContentPane());
+        editDialog.getContentPane().setLayout(editDialogLayout);
+        editDialogLayout.setHorizontalGroup(
+            editDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(addDialogNameLabel1)
-                    .addComponent(addDialogIDLabel1)
-                    .addComponent(addDialogLastnameLabel1))
+                .addGroup(editDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(editDialogNameLabel1)
+                    .addComponent(editDialogIDLabel1)
+                    .addComponent(editDialogLastnameLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addDialogLayout.createSequentialGroup()
-                        .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(addDialogLastnameField1)
-                            .addComponent(addDialogIDField1)
-                            .addComponent(addDialogFirstnameField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(editDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editDialogLayout.createSequentialGroup()
+                        .addGroup(editDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(editDialogLastnameField1)
+                            .addComponent(editDialogIDField1)
+                            .addComponent(editDialogFirstnameField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(addDialogCreditLimit)
-                            .addComponent(addDialogBalance)
-                            .addComponent(addDialogEmailLabel)))
-                    .addComponent(addDialogDiscartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(editDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(editDialogCreditLimit)
+                            .addComponent(editDialogBalance)
+                            .addComponent(editDialogEmailLabel)))
+                    .addComponent(editDialogDiscartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addDialogLayout.createSequentialGroup()
-                        .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addDialogCreditLimitField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addDialogBalanceField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addDialogEmailField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(addDialogLayout.createSequentialGroup()
+                .addGroup(editDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editDialogLayout.createSequentialGroup()
+                        .addGroup(editDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editDialogCreditLimitField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editDialogBalanceField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editDialogEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(editDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editDialogLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(addDialogPhoneLabel)
+                                .addComponent(editDialogPhoneLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addDialogPhoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(addDialogLayout.createSequentialGroup()
+                                .addComponent(editDialogPhoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(editDialogLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addDialogObsLabel))))
-                    .addComponent(addDialogAcceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(editDialogObsLabel))))
+                    .addComponent(editDialogAcceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        addDialogLayout.setVerticalGroup(
-            addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addDialogLayout.createSequentialGroup()
+        editDialogLayout.setVerticalGroup(
+            editDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addDialogIDField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addDialogIDLabel1)
-                    .addComponent(addDialogEmailLabel)
-                    .addComponent(addDialogEmailField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addDialogPhoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addDialogPhoneLabel))
+                .addGroup(editDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editDialogIDField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editDialogIDLabel1)
+                    .addComponent(editDialogEmailLabel)
+                    .addComponent(editDialogEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editDialogPhoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editDialogPhoneLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addDialogNameLabel1)
-                    .addComponent(addDialogFirstnameField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addDialogCreditLimit)
-                    .addComponent(addDialogCreditLimitField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(editDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editDialogNameLabel1)
+                    .addComponent(editDialogFirstnameField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editDialogCreditLimit)
+                    .addComponent(editDialogCreditLimitField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addDialogLastnameField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addDialogBalanceField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addDialogObsLabel)
-                    .addComponent(addDialogLastnameLabel1)
-                    .addComponent(addDialogBalance))
+                .addGroup(editDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editDialogLastnameField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editDialogBalanceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editDialogObsLabel)
+                    .addComponent(editDialogLastnameLabel1)
+                    .addComponent(editDialogBalance))
                 .addGap(18, 18, 18)
-                .addGroup(addDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addDialogAcceptButton)
-                    .addComponent(addDialogDiscartButton))
+                .addGroup(editDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editDialogAcceptButton)
+                    .addComponent(editDialogDiscartButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        balanceAmountLabel.addActionListener(new java.awt.event.ActionListener() {
+        balanceAmountField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                balanceAmountLabelActionPerformed(evt);
+                balanceAmountFieldActionPerformed(evt);
             }
         });
 
@@ -229,10 +229,10 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel8.setText("eg. 50 or -100");
 
-        jButton2.setText("OK");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        balanceOkButton.setText("OK");
+        balanceOkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                balanceOkButtonActionPerformed(evt);
             }
         });
 
@@ -261,8 +261,8 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(balanceDialogLayout.createSequentialGroup()
                         .addGroup(balanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(balanceAmountLabel))
+                            .addComponent(balanceOkButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(balanceAmountField))
                         .addContainerGap())))
         );
         balanceDialogLayout.setVerticalGroup(
@@ -285,9 +285,9 @@ public class GUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(balanceAmountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(balanceAmountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(balanceOkButton)
                 .addGap(5, 5, 5))
         );
 
@@ -440,43 +440,43 @@ public class GUI extends javax.swing.JFrame {
         int selectedRow = this.jTable1.getSelectedRow();
         String UID = (String) this.jTable1.getValueAt(selectedRow, 0);
         Customer tempCustomer = this.controller.getCustomer(UID);
-        this.addDialogIDField1.setText(tempCustomer.getUID());
-        this.addDialogFirstnameField1.setText(tempCustomer.getFirstName());
-        this.addDialogLastnameField1.setText(tempCustomer.getLastName());
-        this.addDialogBalanceField1.setText(String.valueOf(tempCustomer.getBalance()));
-        this.addDialogCreditLimitField1.setText(String.valueOf(tempCustomer.getCreditLimit()));
-        this.addDialogEmailField1.setText(tempCustomer.getEmail());
-        this.addDialogPhoneField1.setText(tempCustomer.getTlf());
-        this.addDialogIDField1.setEditable(false);
-        this.addDialogBalanceField1.setEditable(false);
-        addDialogMode("edit");
-        addDialog.setVisible(true);
-        addDialog.pack();
+        this.editDialogIDField1.setText(tempCustomer.getUID());
+        this.editDialogFirstnameField1.setText(tempCustomer.getFirstName());
+        this.editDialogLastnameField1.setText(tempCustomer.getLastName());
+        this.editDialogBalanceField.setText(String.valueOf(tempCustomer.getBalance()));
+        this.editDialogCreditLimitField.setText(String.valueOf(tempCustomer.getCreditLimit()));
+        this.editDialogEmailField.setText(tempCustomer.getEmail());
+        this.editDialogPhoneField1.setText(tempCustomer.getTlf());
+        this.editDialogIDField1.setEditable(false);
+        this.editDialogBalanceField.setEditable(false);
+        editDialogMode("edit");
+        editDialog.setVisible(true);
+        editDialog.pack();
     }//GEN-LAST:event_CItab_edit_buttonActionPerformed
 
     private void CItab_add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_add_buttonActionPerformed
         // TODO add your handling code here:
-        addDialogClearInputFields();
-        addDialogMode("add");
-        addDialog.setVisible(true);
-        addDialog.pack();
-        this.addDialogIDField1.setEditable(true);
-        this.addDialogBalanceField1.setEditable(true);
+        editDialogClearInputFields();
+        editDialogMode("add");
+        editDialog.setVisible(true);
+        editDialog.pack();
+        this.editDialogIDField1.setEditable(true);
+        this.editDialogBalanceField.setEditable(true);
     }//GEN-LAST:event_CItab_add_buttonActionPerformed
 
-    private void addDialogDiscartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogDiscartButtonActionPerformed
+    private void editDialogDiscartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDialogDiscartButtonActionPerformed
         // TODO add your handling code here:
-        addDialog.setVisible(false);
-    }//GEN-LAST:event_addDialogDiscartButtonActionPerformed
+        editDialog.setVisible(false);
+    }//GEN-LAST:event_editDialogDiscartButtonActionPerformed
 
-    private void addDialogAcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogAcceptButtonActionPerformed
+    private void editDialogAcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDialogAcceptButtonActionPerformed
         // TODO add your handling code here:
-        Customer tempCustomer = new Customer(addDialogIDField1.getText(), addDialogFirstnameField1.getText(), addDialogLastnameField1.getText(), Double.parseDouble(addDialogBalanceField1.getText()), Double.parseDouble(addDialogCreditLimitField1.getText()) , addDialogEmailField1.getText(), addDialogPhoneField1.getText(), "123");
-        controller.editCustomer(tempCustomer,addDialogMode);
+        Customer tempCustomer = new Customer(editDialogIDField1.getText(), editDialogFirstnameField1.getText(), editDialogLastnameField1.getText(), Double.parseDouble(editDialogBalanceField.getText()), Double.parseDouble(editDialogCreditLimitField.getText()) , editDialogEmailField.getText(), editDialogPhoneField1.getText(), "123");
+        controller.editCustomer(tempCustomer,editDialogMode);
         controller.getAllCustomers(ltm);
         //sendtodb(tempCustomer);
-        addDialog.setVisible(false);
-    }//GEN-LAST:event_addDialogAcceptButtonActionPerformed
+        editDialog.setVisible(false);
+    }//GEN-LAST:event_editDialogAcceptButtonActionPerformed
 
     private void CItab_refresh_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_refresh_buttonActionPerformed
         if(ask("If you refresh change will be lost","fetch","do not fetch"))
@@ -493,16 +493,24 @@ public class GUI extends javax.swing.JFrame {
         this.BalanceUIDLabel.setText(UID);
         this.balanceNameLabel.setText(tempCustomer.getFirstName()+" "+tempCustomer.getLastName());
         balanceDialog.setVisible(true);
+        balanceDialog.pack();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void balanceAmountLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceAmountLabelActionPerformed
+    private void balanceAmountFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceAmountFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_balanceAmountLabelActionPerformed
+    }//GEN-LAST:event_balanceAmountFieldActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void balanceOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceOkButtonActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
+        String UID = this.BalanceUIDLabel.getText();
+        Customer tempCustomer = this.controller.getCustomer(UID);
+        double newBalance = tempCustomer.getBalance() + Double.valueOf(balanceAmountField.getText());
+        tempCustomer.setBalance(newBalance);
+        controller.editCustomer(tempCustomer, "edit");
+        balanceAmountField.setText("");
+        balanceDialog.setVisible(false);
+        controller.getAllCustomers(ltm);
+    }//GEN-LAST:event_balanceOkButtonActionPerformed
 ;
     private boolean ask(String question, String trueanswer, String falseanswer){
         Object[] options = {trueanswer,
@@ -562,29 +570,29 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton CItab_edit_button;
     private javax.swing.JButton CItab_refresh_button;
     private javax.swing.JTabbedPane Customer_info_tab;
-    private javax.swing.JDialog addDialog;
-    private javax.swing.JButton addDialogAcceptButton;
-    private javax.swing.JLabel addDialogBalance;
-    private javax.swing.JTextField addDialogBalanceField1;
-    private javax.swing.JLabel addDialogCreditLimit;
-    private javax.swing.JTextField addDialogCreditLimitField1;
-    private javax.swing.JButton addDialogDiscartButton;
-    private javax.swing.JTextField addDialogEmailField1;
-    private javax.swing.JLabel addDialogEmailLabel;
-    private javax.swing.JTextField addDialogFirstnameField1;
-    private javax.swing.JTextField addDialogIDField1;
-    private javax.swing.JLabel addDialogIDLabel1;
-    private javax.swing.JTextField addDialogLastnameField1;
-    private javax.swing.JLabel addDialogLastnameLabel1;
-    private javax.swing.JLabel addDialogNameLabel1;
-    private javax.swing.JLabel addDialogObsLabel;
-    private javax.swing.JTextField addDialogPhoneField1;
-    private javax.swing.JLabel addDialogPhoneLabel;
-    private javax.swing.JTextField balanceAmountLabel;
+    private javax.swing.JTextField balanceAmountField;
     private javax.swing.JDialog balanceDialog;
     private javax.swing.JLabel balanceNameLabel;
+    private javax.swing.JButton balanceOkButton;
+    private javax.swing.JDialog editDialog;
+    private javax.swing.JButton editDialogAcceptButton;
+    private javax.swing.JLabel editDialogBalance;
+    private javax.swing.JTextField editDialogBalanceField;
+    private javax.swing.JLabel editDialogCreditLimit;
+    private javax.swing.JTextField editDialogCreditLimitField;
+    private javax.swing.JButton editDialogDiscartButton;
+    private javax.swing.JTextField editDialogEmailField;
+    private javax.swing.JLabel editDialogEmailLabel;
+    private javax.swing.JTextField editDialogFirstnameField1;
+    private javax.swing.JTextField editDialogIDField1;
+    private javax.swing.JLabel editDialogIDLabel1;
+    private javax.swing.JTextField editDialogLastnameField1;
+    private javax.swing.JLabel editDialogLastnameLabel1;
+    private javax.swing.JLabel editDialogNameLabel1;
+    private javax.swing.JLabel editDialogObsLabel;
+    private javax.swing.JTextField editDialogPhoneField1;
+    private javax.swing.JLabel editDialogPhoneLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
@@ -597,18 +605,18 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-    private void addDialogClearInputFields() {
-        addDialogIDField1.setText("");
-        addDialogFirstnameField1.setText("");
-        addDialogLastnameField1.setText("");
-        addDialogEmailField1.setText("");
-        addDialogCreditLimitField1.setText("");
-        addDialogBalanceField1.setText("");
-        addDialogPhoneField1.setText("");
+    private void editDialogClearInputFields() {
+        editDialogIDField1.setText("");
+        editDialogFirstnameField1.setText("");
+        editDialogLastnameField1.setText("");
+        editDialogEmailField.setText("");
+        editDialogCreditLimitField.setText("");
+        editDialogBalanceField.setText("");
+        editDialogPhoneField1.setText("");
         
     }
 
-    private void addDialogMode(String mode) {
-        addDialogMode = mode;
+    private void editDialogMode(String mode) {
+        editDialogMode = mode;
         }
 }

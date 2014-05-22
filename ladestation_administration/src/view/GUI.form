@@ -2,7 +2,7 @@
 
 <Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Container class="javax.swing.JDialog" name="addDialog">
+    <Container class="javax.swing.JDialog" name="editDialog">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -10,49 +10,49 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="addDialogNameLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="addDialogIDLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="addDialogLastnameLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogNameLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogIDLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogLastnameLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="addDialogLastnameField1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="addDialogIDField1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="addDialogFirstnameField1" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="editDialogLastnameField1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="editDialogIDField1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="editDialogFirstnameField1" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="addDialogCreditLimit" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="addDialogBalance" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="addDialogEmailLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="editDialogCreditLimit" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="editDialogBalance" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="editDialogEmailLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="addDialogDiscartButton" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                      <Component id="editDialogDiscartButton" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="addDialogCreditLimitField1" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
-                              <Component id="addDialogBalanceField1" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
-                              <Component id="addDialogEmailField1" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="editDialogCreditLimitField" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="editDialogBalanceField" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="editDialogEmailField" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                  <Component id="addDialogPhoneLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editDialogPhoneLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="addDialogPhoneField1" min="-2" pref="160" max="-2" attributes="0"/>
+                                  <Component id="editDialogPhoneField1" min="-2" pref="160" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="addDialogObsLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editDialogObsLabel" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <Component id="addDialogAcceptButton" min="-2" pref="160" max="-2" attributes="0"/>
+                      <Component id="editDialogAcceptButton" min="-2" pref="160" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -63,32 +63,32 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="addDialogIDField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addDialogIDLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addDialogEmailLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addDialogEmailField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addDialogPhoneField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addDialogPhoneLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogIDField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogIDLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogEmailLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogEmailField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogPhoneField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogPhoneLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="addDialogNameLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addDialogFirstnameField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addDialogCreditLimit" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addDialogCreditLimitField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogNameLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogFirstnameField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogCreditLimit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogCreditLimitField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="addDialogLastnameField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addDialogBalanceField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addDialogObsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addDialogLastnameLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addDialogBalance" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogLastnameField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogBalanceField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogObsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogLastnameLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogBalance" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="addDialogAcceptButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addDialogDiscartButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogAcceptButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="editDialogDiscartButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -96,109 +96,109 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="addDialogIDLabel1">
+        <Component class="javax.swing.JLabel" name="editDialogIDLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" value="ID:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="addDialogIDField1">
+        <Component class="javax.swing.JTextField" name="editDialogIDField1">
           <Properties>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="addDialogFirstnameField1"/>
+              <ComponentRef name="editDialogFirstnameField1"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="addDialogFirstnameField1">
+        <Component class="javax.swing.JTextField" name="editDialogFirstnameField1">
           <Properties>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="addDialogLastnameField1"/>
+              <ComponentRef name="editDialogLastnameField1"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="addDialogNameLabel1">
+        <Component class="javax.swing.JLabel" name="editDialogNameLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" value="First name:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="addDialogLastnameLabel1">
+        <Component class="javax.swing.JLabel" name="editDialogLastnameLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Last name:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="addDialogLastnameField1">
+        <Component class="javax.swing.JTextField" name="editDialogLastnameField1">
           <Properties>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="addDialogEmailField1"/>
+              <ComponentRef name="editDialogEmailField"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="addDialogBalance">
+        <Component class="javax.swing.JLabel" name="editDialogBalance">
           <Properties>
             <Property name="text" type="java.lang.String" value="Balance:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="addDialogBalanceField1">
+        <Component class="javax.swing.JTextField" name="editDialogBalanceField">
           <Properties>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="addDialogPhoneField1"/>
+              <ComponentRef name="editDialogPhoneField1"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="addDialogCreditLimitField1">
+        <Component class="javax.swing.JTextField" name="editDialogCreditLimitField">
           <Properties>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="addDialogBalanceField1"/>
+              <ComponentRef name="editDialogBalanceField"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="addDialogCreditLimit">
+        <Component class="javax.swing.JLabel" name="editDialogCreditLimit">
           <Properties>
             <Property name="text" type="java.lang.String" value="Credit limit:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="addDialogEmailLabel">
+        <Component class="javax.swing.JLabel" name="editDialogEmailLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Email:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="addDialogEmailField1">
+        <Component class="javax.swing.JTextField" name="editDialogEmailField">
           <Properties>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="addDialogCreditLimitField1"/>
+              <ComponentRef name="editDialogCreditLimitField"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="addDialogPhoneField1">
+        <Component class="javax.swing.JTextField" name="editDialogPhoneField1">
           <Properties>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="addDialogIDField1"/>
+              <ComponentRef name="editDialogIDField1"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="addDialogObsLabel">
+        <Component class="javax.swing.JLabel" name="editDialogObsLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="OBS eg &quot;-200&quot;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="addDialogPhoneLabel">
+        <Component class="javax.swing.JLabel" name="editDialogPhoneLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Phone:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="addDialogDiscartButton">
+        <Component class="javax.swing.JButton" name="editDialogDiscartButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Discart"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addDialogDiscartButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editDialogDiscartButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="addDialogAcceptButton">
+        <Component class="javax.swing.JButton" name="editDialogAcceptButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Accept"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addDialogAcceptButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editDialogAcceptButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -234,8 +234,8 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
-                              <Component id="balanceAmountLabel" max="32767" attributes="0"/>
+                              <Component id="balanceOkButton" alignment="0" max="32767" attributes="0"/>
+                              <Component id="balanceAmountField" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -265,18 +265,18 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="balanceAmountLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="balanceAmountField" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="balanceOkButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="balanceAmountLabel">
+        <Component class="javax.swing.JTextField" name="balanceAmountField">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="balanceAmountLabelActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="balanceAmountFieldActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
@@ -316,12 +316,12 @@
             <Property name="text" type="java.lang.String" value="eg. 50 or -100"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="balanceOkButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="OK"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="balanceOkButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
