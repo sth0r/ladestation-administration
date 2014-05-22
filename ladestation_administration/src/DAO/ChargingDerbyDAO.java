@@ -24,8 +24,8 @@ public class ChargingDerbyDAO implements ChargingDAO
     @Override
     public Customer findByUID(String uID)
     {
-        String titlesQuery = "select distinct \"UID\", \"firstName\",  "
-                + "\"lastName\", \"balance\", \"creditLimit\", \"email\", \"tlf\", \"password\""
+        String titlesQuery = "select distinct \"UID\", \"FIRSTNAME\",  "
+                + "\"LASTNAME\", \"BALANCE\", \"CREDITLIMIT\", \"EMAIL\", \"TLF\", \"PASSWORD\""
                 + "from \"CUSTOMERS\" "
                 + "where \"UID\" = ?";
 
@@ -71,10 +71,10 @@ public class ChargingDerbyDAO implements ChargingDAO
     @Override
     public Customer findByFirstName(String firstName)
     {
-        String titlesQuery = "select distinct \"UID\", \"firstName\",  "
-                + "\"lastName\", \"balance\", \"creditLimit\", \"email\", \"tlf\""
+        String titlesQuery = "select distinct \"UID\", \"FIRSTNAME\",  "
+                + "\"LASTNAME\", \"BALANCE\", \"CREDITLIMIT\", \"EMAIL\", \"TLF\""
                 + "from \"CUSTOMERS\" "
-                + "where \"firstName\" = ?";
+                + "where \"FIRSTNAME\" = ?";
 
         try (Connection con = DerbyDAOFactory.createConnection();
                 PreparedStatement preparedStatement = con.prepareStatement(titlesQuery);)
@@ -96,7 +96,7 @@ public class ChargingDerbyDAO implements ChargingDAO
     {
         String titlesQuery = "select *"
                 + "from \"CUSTOMERS\" "
-                + "where \"firstName\" = ?";
+                + "where \"FIRSTNAME\" = ?";
 
         try (Connection con = DerbyDAOFactory.createConnection();
                 PreparedStatement preparedStatement = con.prepareStatement(titlesQuery);)
@@ -113,10 +113,10 @@ public class ChargingDerbyDAO implements ChargingDAO
     @Override
     public Customer findByLastName(String lastName)
     {
-        String titlesQuery = "select distinct \"UID\", \"firstName\",  "
-                + "\"lastName\", \"balance\", \"creditLimit\", \"email\", \"tlf\""
+        String titlesQuery = "select distinct \"UID\", \"FIRSTNAME\",  "
+                + "\"LASTNAME\", \"BALANCE\", \"CREDITLIMIT\", \"EMAIL\", \"TLF\""
                 + "from \"CUSTOMERS\" "
-                + "where \"lastName\" = ?";
+                + "where \"LASTNAME\" = ?";
 
         try (Connection con = DerbyDAOFactory.createConnection();
                 PreparedStatement preparedStatement = con.prepareStatement(titlesQuery);)
@@ -137,10 +137,10 @@ public class ChargingDerbyDAO implements ChargingDAO
     @Override
     public Customer findByBalance(String balance)
     {
-        String titlesQuery = "select distinct \"UID\", \"firstName\",  "
-                + "\"lastName\", \"balance\", \"creditLimit\", \"email\", \"tlf\""
+        String titlesQuery = "select distinct \"UID\", \"FIRSTNAME\",  "
+                + "\"LASTNAME\", \"BALANCE\", \"CREDITLIMIT\", \"EMAIL\", \"TLF\""
                 + "from \"CUSTOMERS\" "
-                + "where \"balance\" = ?";
+                + "where \"BALANCE\" = ?";
 
         try (Connection con = DerbyDAOFactory.createConnection();
                 PreparedStatement preparedStatement = con.prepareStatement(titlesQuery);)
@@ -161,10 +161,10 @@ public class ChargingDerbyDAO implements ChargingDAO
     @Override
     public Customer findByCreditLimit(String creditLimit)
     {
-        String titlesQuery = "select distinct \"UID\", \"firstName\",  "
-                + "\"lastName\", \"balance\", \"creditLimit\", \"email\", \"tlf\""
+        String titlesQuery = "select distinct \"UID\", \"FIRSTNAME\",  "
+                + "\"LASTNAME\", \"BALANCE\", \"CREDITLIMIT\", \"EMAIL\", \"TLF\""
                 + "from \"CUSTOMERS\" "
-                + "where \"creditLimit\" = ?";
+                + "where \"CREDITLIMIT\" = ?";
 
         try (Connection con = DerbyDAOFactory.createConnection();
                 PreparedStatement preparedStatement = con.prepareStatement(titlesQuery);)
@@ -185,10 +185,10 @@ public class ChargingDerbyDAO implements ChargingDAO
     @Override
     public Customer findByEmail(String email)
     {
-        String titlesQuery = "select distinct \"UID\", \"firstName\",  "
-                + "\"lastName\", \"balance\", \"creditLimit\", \"email\", \"tlf\""
+        String titlesQuery = "select distinct \"UID\", \"FIRSTNAME\",  "
+                + "\"LASTNAME\", \"BALANCE\", \"CREDITLIMIT\", \"EMAIL\", \"TLF\""
                 + "from \"CUSTOMERS\" "
-                + "where \"email\" = ?";
+                + "where \"EMAIL\" = ?";
 
         try (Connection con = DerbyDAOFactory.createConnection();
                 PreparedStatement preparedStatement = con.prepareStatement(titlesQuery);)
@@ -209,10 +209,10 @@ public class ChargingDerbyDAO implements ChargingDAO
     @Override
     public Customer findByTlf(String tlf)
     {
-        String titlesQuery = "select distinct \"UID\", \"firstName\",  "
-                + "\"lastName\", \"balance\", \"creditLimit\", \"email\", \"tlf\""
+        String titlesQuery = "select distinct \"UID\", \"FIRSTNAME\",  "
+                + "\"LASTNAME\", \"BALANCE\", \"CREDITLIMIT\", \"EMAIL\", \"TLF\""
                 + "from \"CUSTOMERS\" "
-                + "where \"tlf\" = ?";
+                + "where \"TLF\" = ?";
         try (Connection con = DerbyDAOFactory.createConnection();
             PreparedStatement preparedStatement = con.prepareStatement(titlesQuery);)
         {
@@ -418,14 +418,28 @@ public class ChargingDerbyDAO implements ChargingDAO
         return new Price(price);
     }
 
-    public void addCustomerToDB(Customer tempCustomer) throws SQLException {
-        
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addCustomerToDB(Customer customer) throws SQLException {
+        String sQLCommand = "INSERT INTO CUSTOMERS (UID,FIRSTNAME,LASTNAME,BALANCE,CREDITLIMIT,EMAIL,TLF,PASSWORD)"
+                + "VALUES ('"+customer.getUID()+"','"+customer.getFirstName()+"','"+customer.getLastName()+
+                "','"+customer.getBalance()+"','"+customer.getCreditLimit()+"','"+customer.getEmail()+"','"+customer.getTlf()+"','"+"123"+"')";
+        try (Connection con = DerbyDAOFactory.createConnection();
+            PreparedStatement stmt = con.prepareStatement(sQLCommand, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);)
+        {
+            stmt.executeUpdate();
+            con.close();
+        }
     }
 
-    public void editCustomerFromDB(Customer tempCustomer) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void editCustomerFromDB(Customer editCustomer) throws SQLException {
+        String sQLCommand = "UPDATE CUSTOMERS SET FIRSTNAME = '"+editCustomer.getFirstName()+"',LASTNAME = '"+editCustomer.getLastName()+
+                "',BALANCE = '"+editCustomer.getBalance()+"',CREDITLIMIT = '"+editCustomer.getCreditLimit()+"',EMAIL = '"+editCustomer.getEmail()+
+                "',TLF = '"+editCustomer.getTlf()+"' WHERE UID = '"+editCustomer.getUID()+"'";
+        try (Connection con = DerbyDAOFactory.createConnection();
+            PreparedStatement stmt = con.prepareStatement(sQLCommand, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);)
+        {
+            stmt.executeUpdate();
+            con.close();
+        }
     }
 
     public void deleteCustomerFromDB(String uID) throws SQLException 

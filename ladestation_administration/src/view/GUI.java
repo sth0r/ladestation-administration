@@ -4,16 +4,11 @@
  */
 package view;
 
-import DAO.ChargingDerbyDAO;
 import controller.GUIController;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.sql.rowset.CachedRowSet;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import model.*;
 
 
@@ -75,6 +70,17 @@ public class GUI extends javax.swing.JFrame {
         addDialogPhoneLabel = new javax.swing.JLabel();
         addDialogDiscartButton = new javax.swing.JButton();
         addDialogAcceptButton = new javax.swing.JButton();
+        balanceDialog = new javax.swing.JDialog();
+        balanceAmountLabel = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        BalanceUIDLabel = new javax.swing.JLabel();
+        balanceNameLabel = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         Customer_info_tab = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         CItab_add_button = new javax.swing.JButton();
@@ -83,6 +89,7 @@ public class GUI extends javax.swing.JFrame {
         CItab_refresh_button = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         addDialogIDLabel1.setText("ID:");
@@ -202,6 +209,88 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        balanceAmountLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                balanceAmountLabelActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("UID:");
+
+        jLabel2.setText("Name:");
+
+        BalanceUIDLabel.setText("jLabel3");
+
+        balanceNameLabel.setText("jLabel4");
+
+        jLabel5.setText("Type in the amount to be added to or");
+
+        jLabel6.setText("removed from the customer's account");
+
+        jLabel8.setText("eg. 50 or -100");
+
+        jButton2.setText("OK");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout balanceDialogLayout = new javax.swing.GroupLayout(balanceDialog.getContentPane());
+        balanceDialog.getContentPane().setLayout(balanceDialogLayout);
+        balanceDialogLayout.setHorizontalGroup(
+            balanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(balanceDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(balanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(balanceDialogLayout.createSequentialGroup()
+                        .addGroup(balanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addGroup(balanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, balanceDialogLayout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(BalanceUIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, balanceDialogLayout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(balanceNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)))
+                            .addComponent(jLabel8))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(balanceDialogLayout.createSequentialGroup()
+                        .addGroup(balanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(balanceAmountLabel))
+                        .addContainerGap())))
+        );
+        balanceDialogLayout.setVerticalGroup(
+            balanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, balanceDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(balanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(BalanceUIDLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(balanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(balanceNameLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(balanceAmountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addGap(5, 5, 5))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         CItab_add_button.setText("Add");
@@ -267,6 +356,13 @@ public class GUI extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(5).setHeaderValue("Email");
         jTable1.getColumnModel().getColumn(6).setHeaderValue("Phone");
 
+        jButton1.setText("rediger balance");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -282,7 +378,8 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(CItab_delete_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(CItab_refresh_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -296,7 +393,9 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(CItab_refresh_button))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         Customer_info_tab.addTab("Customer info", jPanel1);
@@ -333,6 +432,7 @@ public class GUI extends javax.swing.JFrame {
         int selectedRow = this.jTable1.getSelectedRow();
         String UID = (String) this.jTable1.getValueAt(selectedRow, 0);
         controller.deleteCustomer(UID);
+        controller.getAllCustomers(ltm);
     }//GEN-LAST:event_CItab_delete_buttonActionPerformed
 
     private void CItab_edit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_edit_buttonActionPerformed
@@ -360,6 +460,8 @@ public class GUI extends javax.swing.JFrame {
         addDialogMode("add");
         addDialog.setVisible(true);
         addDialog.pack();
+        this.addDialogIDField1.setEditable(true);
+        this.addDialogBalanceField1.setEditable(true);
     }//GEN-LAST:event_CItab_add_buttonActionPerformed
 
     private void addDialogDiscartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDialogDiscartButtonActionPerformed
@@ -382,6 +484,25 @@ public class GUI extends javax.swing.JFrame {
             controller.getAllCustomers(ltm);   
         }
     }//GEN-LAST:event_CItab_refresh_buttonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = this.jTable1.getSelectedRow();
+        String UID = (String) this.jTable1.getValueAt(selectedRow, 0);
+        Customer tempCustomer = this.controller.getCustomer(UID);
+        this.BalanceUIDLabel.setText(UID);
+        this.balanceNameLabel.setText(tempCustomer.getFirstName()+" "+tempCustomer.getLastName());
+        balanceDialog.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void balanceAmountLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceAmountLabelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_balanceAmountLabelActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 ;
     private boolean ask(String question, String trueanswer, String falseanswer){
         Object[] options = {trueanswer,
@@ -435,6 +556,7 @@ public class GUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BalanceUIDLabel;
     private javax.swing.JButton CItab_add_button;
     private javax.swing.JButton CItab_delete_button;
     private javax.swing.JButton CItab_edit_button;
@@ -458,6 +580,17 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel addDialogObsLabel;
     private javax.swing.JTextField addDialogPhoneField1;
     private javax.swing.JLabel addDialogPhoneLabel;
+    private javax.swing.JTextField balanceAmountLabel;
+    private javax.swing.JDialog balanceDialog;
+    private javax.swing.JLabel balanceNameLabel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
