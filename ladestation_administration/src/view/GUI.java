@@ -1,6 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* carcharger
+ * 
+ * Billing system for charging electric cars.
+ * 
+ * 2014 DTU
  */
 package view;
 
@@ -16,33 +18,35 @@ import model.*;
 
 /**
  *
- * @author Sth0r
+ * @author Thor Heldager Strange
+ * @version %I%, %G%
  */
 public class GUI extends javax.swing.JFrame {
 
     LadestationTableModel ltm = new LadestationTableModel();
+    ResultSetTableModel rstmForChargingStats = new ResultSetTableModel();
     GUIController controller = new GUIController();
     String editDialogMode;
-    /**
+    /** construktor
      * Creates new form GUI
+     * @throws SQLException if an exceptions occurs
      */
     public GUI() throws SQLException {
         initComponents();
         jTable1.setModel(ltm);
-        ltm.addColumn("ID");
-        ltm.addColumn("First name");
-        ltm.addColumn("Last name");
-        ltm.addColumn("Balance");
-        ltm.addColumn("Credit limit");
-        ltm.addColumn("Email");
-        ltm.addColumn("Phone");
+        this.chargingStatsTabel.setModel(rstmForChargingStats);
+        ltm.addColumn("ID"); //tilføjer en søjle ved navn "ID"
+        ltm.addColumn("First name"); //tilføjer en søjle ved navn "First name"
+        ltm.addColumn("Last name"); //tilføjer en søjle ved navn "Last name"
+        ltm.addColumn("Balance"); //tilføjer en søjle ved navn "Balance"
+        ltm.addColumn("Credit limit"); //tilføjer en søjle ved navn "Credit limit"
+        ltm.addColumn("Email"); //tilføjer en søjle ved navn "Email"
+        ltm.addColumn("Phone"); //tilføjer en søjle ved navn "Phone"
+        controller.setGUI(this); //fortæller controlleren hvor GUIEN er
+        controller.getAllCustomers(ltm); //henter alle kunderne fra databasen og sætter dem på listen i guien.
         
     }
     
-    //LadestationTableModel thismodel;
-    
-   
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,8 +93,13 @@ public class GUI extends javax.swing.JFrame {
         CItab_refresh_button = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        editBalanceButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        chargingStatsTabel = new javax.swing.JTable();
+        chargingStatsRefresh = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        testcem = new javax.swing.JButton();
 
         editDialogIDLabel1.setText("ID:");
 
@@ -356,10 +365,10 @@ public class GUI extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(5).setHeaderValue("Email");
         jTable1.getColumnModel().getColumn(6).setHeaderValue("Phone");
 
-        jButton1.setText("rediger balance");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        editBalanceButton.setText("rediger balance");
+        editBalanceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                editBalanceButtonActionPerformed(evt);
             }
         });
 
@@ -379,7 +388,7 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(CItab_refresh_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(editBalanceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -394,24 +403,77 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(editBalanceButton)
                 .addContainerGap(98, Short.MAX_VALUE))
         );
 
         Customer_info_tab.addTab("Customer info", jPanel1);
 
+        chargingStatsTabel.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(chargingStatsTabel);
+
+        chargingStatsRefresh.setText("refresh");
+        chargingStatsRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chargingStatsRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 766, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chargingStatsRefresh)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(304, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 618, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(chargingStatsRefresh)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
-        Customer_info_tab.addTab("Event log", jPanel2);
+        Customer_info_tab.addTab("Charging stats", jPanel2);
+
+        testcem.setText("test af customerErrorMsg(String msg)");
+        testcem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testcemActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(testcem)
+                .addContainerGap(543, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(testcem)
+                .addContainerGap(584, Short.MAX_VALUE))
+        );
+
+        Customer_info_tab.addTab("test_tab", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -427,48 +489,17 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CItab_delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_delete_buttonActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = this.jTable1.getSelectedRow();
-        String UID = (String) this.jTable1.getValueAt(selectedRow, 0);
-        controller.deleteCustomer(UID);
-        controller.getAllCustomers(ltm);
-    }//GEN-LAST:event_CItab_delete_buttonActionPerformed
-
-    private void CItab_edit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_edit_buttonActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = this.jTable1.getSelectedRow();
-        String UID = (String) this.jTable1.getValueAt(selectedRow, 0);
-        Customer tempCustomer = this.controller.getCustomer(UID);
-        this.editDialogIDField1.setText(tempCustomer.getUID());
-        this.editDialogFirstnameField1.setText(tempCustomer.getFirstName());
-        this.editDialogLastnameField1.setText(tempCustomer.getLastName());
-        this.editDialogBalanceField.setText(String.valueOf(tempCustomer.getBalance()));
-        this.editDialogCreditLimitField.setText(String.valueOf(tempCustomer.getCreditLimit()));
-        this.editDialogEmailField.setText(tempCustomer.getEmail());
-        this.editDialogPhoneField1.setText(tempCustomer.getTlf());
-        this.editDialogIDField1.setEditable(false);
-        this.editDialogBalanceField.setEditable(false);
-        editDialogMode("edit");
-        editDialog.setVisible(true);
-        editDialog.pack();
-    }//GEN-LAST:event_CItab_edit_buttonActionPerformed
-
-    private void CItab_add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_add_buttonActionPerformed
-        // TODO add your handling code here:
-        editDialogClearInputFields();
-        editDialogMode("add");
-        editDialog.setVisible(true);
-        editDialog.pack();
-        this.editDialogIDField1.setEditable(true);
-        this.editDialogBalanceField.setEditable(true);
-    }//GEN-LAST:event_CItab_add_buttonActionPerformed
-
+    /**
+     * knap i editDialog til at lukke uden at gemmen(uden at opdatere/oprette i databasen);
+     */
     private void editDialogDiscartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDialogDiscartButtonActionPerformed
         // TODO add your handling code here:
-        editDialog.setVisible(false);
+        editDialog.setVisible(false); //editDialog gør editDialog synlig
     }//GEN-LAST:event_editDialogDiscartButtonActionPerformed
 
+    /**
+     *  knap i editDialog til at opdatere/tilføje kunden til databasen.
+     */
     private void editDialogAcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDialogAcceptButtonActionPerformed
         // TODO add your handling code here:
         Customer tempCustomer = new Customer(editDialogIDField1.getText(), editDialogFirstnameField1.getText(), editDialogLastnameField1.getText(), Double.parseDouble(editDialogBalanceField.getText()), Double.parseDouble(editDialogCreditLimitField.getText()) , editDialogEmailField.getText(), editDialogPhoneField1.getText(), "123");
@@ -478,41 +509,142 @@ public class GUI extends javax.swing.JFrame {
         editDialog.setVisible(false);
     }//GEN-LAST:event_editDialogAcceptButtonActionPerformed
 
-    private void CItab_refresh_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_refresh_buttonActionPerformed
-        if(ask("If you refresh change will be lost","fetch","do not fetch"))
-        {
-            controller.getAllCustomers(ltm);   
-        }
-    }//GEN-LAST:event_CItab_refresh_buttonActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = this.jTable1.getSelectedRow();
-        String UID = (String) this.jTable1.getValueAt(selectedRow, 0);
-        Customer tempCustomer = this.controller.getCustomer(UID);
-        this.BalanceUIDLabel.setText(UID);
-        this.balanceNameLabel.setText(tempCustomer.getFirstName()+" "+tempCustomer.getLastName());
-        balanceDialog.setVisible(true);
-        balanceDialog.pack();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+    /**
+     * to be deleted
+     */
     private void balanceAmountFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceAmountFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_balanceAmountFieldActionPerformed
 
+    /**
+     * knap man trykker på for at opdatere kundens balance. 
+     */
     private void balanceOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceOkButtonActionPerformed
         // TODO add your handling code here:
-        String UID = this.BalanceUIDLabel.getText();
-        Customer tempCustomer = this.controller.getCustomer(UID);
-        double newBalance = tempCustomer.getBalance() + Double.valueOf(balanceAmountField.getText());
-        tempCustomer.setBalance(newBalance);
-        controller.editCustomer(tempCustomer, "edit");
-        balanceAmountField.setText("");
-        balanceDialog.setVisible(false);
-        controller.getAllCustomers(ltm);
+        String UID = this.BalanceUIDLabel.getText(); //henter kundens UID ud af BalanceUIDLabel
+        Customer tempCustomer = this.controller.getCustomer(UID); //henter kunden fra databasen
+        double newBalance = tempCustomer.getBalance() + Double.valueOf(balanceAmountField.getText()); //lægger kundens nyværende balance og ændring af balancen sammen.
+        tempCustomer.setBalance(newBalance); //sætter den nye balance i den midlertidige kunde
+        controller.editCustomer(tempCustomer, "edit"); //updatere den midlertidige kunde i databasen
+        balanceAmountField.setText(""); //fjerner teksten i balanceAmountField
+        balanceDialog.setVisible(false); //gør balanceDialog usynelig.
+        controller.getAllCustomers(ltm); //updatere ltm med alle kunderne.
     }//GEN-LAST:event_balanceOkButtonActionPerformed
+
+     /**
+     * to be deleted
+     */
+    private void testcemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testcemActionPerformed
+        // TODO add your handling code here:
+        customerErrorMsg("hej");
+    }//GEN-LAST:event_testcemActionPerformed
+
+     /**
+     * knap til at hente charging stats fra databasen. 
+     */
+    private void chargingStatsRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chargingStatsRefreshActionPerformed
+        // TODO add your handling code here:
+        controller.getChargingStats(rstmForChargingStats); //henter alle data om opladningerne fra databasen
+    }//GEN-LAST:event_chargingStatsRefreshActionPerformed
+
+    /**
+     *  knap til at få balanceDialog frem.
+     */
+    private void editBalanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBalanceButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = this.jTable1.getSelectedRow();
+
+        if (selectedRow!=-1){ //kontrollere at der er valgt en kunden på listen.
+
+            String UID = (String) this.jTable1.getValueAt(selectedRow, 0); //får UID ud af jTabel1 og gemmer det som en String
+            Customer tempCustomer = this.controller.getCustomer(UID); //henter en customer fra databasen
+            this.BalanceUIDLabel.setText(UID); //sætter teksten i BalanceUIDLabel
+            this.balanceNameLabel.setText(tempCustomer.getFirstName()+" "+tempCustomer.getLastName()); //sætter teksten i BalanceNameLabel
+            balanceDialog.setVisible(true);
+            balanceDialog.pack();
+        }else //hvis der ikke er valgt en kunde sker dette.
+        {
+            customerErrorMsg("make sure to select a customer."); //meddelse til kunden om at vælge en kunde.
+        }
+    }//GEN-LAST:event_editBalanceButtonActionPerformed
+
+    /**
+     * to be deleted, have been used to get the updated database.
+     */
+    private void CItab_refresh_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_refresh_buttonActionPerformed
+        if(ask("If you refresh change will be lost","fetch","do not fetch"))
+        {
+            controller.getAllCustomers(ltm);
+        }
+    }//GEN-LAST:event_CItab_refresh_buttonActionPerformed
+
+    /**
+     * knap til at slette den valgte kunde. 
+     */
+    private void CItab_delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_delete_buttonActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = this.jTable1.getSelectedRow();
+        if (selectedRow!=-1){ //kontrollere at der er valgt en kunden på listen.
+            String UID = (String) this.jTable1.getValueAt(selectedRow, 0);
+            if(ask("Do you want to delete the selected customer?", "yes", "no")){
+                controller.deleteCustomer(UID);// sletter kunden i databasen
+                controller.getAllCustomers(ltm);// 
+            }
+        }else //hvis der ikke er valgt en kunde sker dette.
+        {
+            customerErrorMsg("make sure to select a customer."); //meddelse til kunden om at vælge en kunde.
+        }
+    }//GEN-LAST:event_CItab_delete_buttonActionPerformed
+
+    /**
+     * kanp til at redigere den valgte kunde. 
+     */
+    private void CItab_edit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_edit_buttonActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = this.jTable1.getSelectedRow(); //hvilken plads in jtable1 der er valgt.
+        if (selectedRow!=-1){ //kontrollere at der er valgt en kunden på listen.
+            String UID = (String) this.jTable1.getValueAt(selectedRow, 0); //laver selectedRow om til en String.
+            Customer tempCustomer = this.controller.getCustomer(UID); //laver et customer objekt uf fra customer modelen.
+            this.editDialogIDField1.setText(tempCustomer.getUID()); //sætter kundens information in i de forskælling Fields
+            this.editDialogFirstnameField1.setText(tempCustomer.getFirstName()); //sætter kundens information in i de forskælling Fields
+            this.editDialogLastnameField1.setText(tempCustomer.getLastName()); //sætter kundens information in i de forskælling Fields
+            this.editDialogBalanceField.setText(String.valueOf(tempCustomer.getBalance())); //sætter kundens information in i de forskælling Fields
+            this.editDialogCreditLimitField.setText(String.valueOf(tempCustomer.getCreditLimit())); //sætter kundens information in i de forskælling Fields
+            this.editDialogEmailField.setText(tempCustomer.getEmail()); //sætter kundens information in i de forskælling Fields
+            this.editDialogPhoneField1.setText(tempCustomer.getTlf()); //sætter kundens information in i de forskælling Fields
+            this.editDialogIDField1.setEditable(false); //gør så man ikke kan redigere i IDField1
+            this.editDialogBalanceField.setEditable(false); //gør så man ikke kan redigere i BalanceField
+            setEditDialogMode("edit"); //dialogen ved at informationen skal bruges til at updatere en kunden
+            editDialog.setVisible(true); //gør så man kan se dialogen
+            editDialog.pack(); //får dialogen til at fylde det den skal.
+        }else //hvis der ikke er valgt en kunde sker dette.
+        {
+            customerErrorMsg("make sure to select a customer."); //meddelse til kunden om at vælge en kunde.
+        }
+    }//GEN-LAST:event_CItab_edit_buttonActionPerformed
+
+    /**
+     * knap til at tilføje en kunde til databasen. 
+     */
+    private void CItab_add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CItab_add_buttonActionPerformed
+        // TODO add your handling code here:
+        editDialogClearInputFields(); //tømmer alle input felter
+        setEditDialogMode("add"); //dialogen ved at informationen skal bruges til at oprette en ny kunden
+        editDialog.setVisible(true);
+        editDialog.pack(); //gør så man kan se dialogen
+        this.editDialogIDField1.setEditable(true); //gør så man kan redigere i IDField1
+        this.editDialogBalanceField.setEditable(true); //gør så man kan redigere i BalanceField
+    }//GEN-LAST:event_CItab_add_buttonActionPerformed
 ;
-    private boolean ask(String question, String trueanswer, String falseanswer){
+    /**
+     * ask the user a question
+     * @param question the question the user should answer
+     * @param trueanswer the answer that will return true.
+     * @param falseanswer the answer that will return false.
+     * @return true if the user press the trueanswer and the other way around.
+     */
+    private boolean ask(String question, String trueanswer, String falseanswer)
+    {
         Object[] options = {trueanswer,
                     falseanswer};
         int n = JOptionPane.showOptionDialog(null,
@@ -574,6 +706,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JDialog balanceDialog;
     private javax.swing.JLabel balanceNameLabel;
     private javax.swing.JButton balanceOkButton;
+    private javax.swing.JButton chargingStatsRefresh;
+    private javax.swing.JTable chargingStatsTabel;
+    private javax.swing.JButton editBalanceButton;
     private javax.swing.JDialog editDialog;
     private javax.swing.JButton editDialogAcceptButton;
     private javax.swing.JLabel editDialogBalance;
@@ -592,7 +727,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel editDialogObsLabel;
     private javax.swing.JTextField editDialogPhoneField1;
     private javax.swing.JLabel editDialogPhoneLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
@@ -601,10 +735,16 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton testcem;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * sletter alt i input fields, så de er klar til brug.
+     */
     private void editDialogClearInputFields() {
         editDialogIDField1.setText("");
         editDialogFirstnameField1.setText("");
@@ -616,7 +756,20 @@ public class GUI extends javax.swing.JFrame {
         
     }
 
-    private void editDialogMode(String mode) {
+    /**
+     * 
+     * @param mode should be set to ether "edit" or "add" and is used to determine if a customer should be add as a new customer in the database or if the customer is a updater of an existing customer in the database.
+     */
+    private void setEditDialogMode(String mode) {
         editDialogMode = mode;
         }
+    
+    /**
+     * for giving a error to the user
+     * @param msg is the message in a String.
+     */
+    public void customerErrorMsg(String msg) {
+        JOptionPane.showMessageDialog(null, msg);
+        }
 }
+
