@@ -115,7 +115,7 @@ view.GUI GUI;
     }
 
     /**
-     * er en set metode der får GUIControlleren til at gemmen en refarangse til view.gui
+     * dette er en metode der får GUIControlleren til at gemmen en refarangse til view.gui
      * @param GUI 
      */
     public void setGUI(GUI GUI) {
