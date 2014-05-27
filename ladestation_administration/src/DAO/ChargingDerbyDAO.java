@@ -452,7 +452,7 @@ public class ChargingDerbyDAO implements ChargingDAO
     public void addCustomerToDB(Customer customer) throws SQLException {
         String sQLCommand = "INSERT INTO CUSTOMERS (UID,FIRSTNAME,LASTNAME,BALANCE,CREDITLIMIT,EMAIL,TLF,PASSWORD)"
                 + "VALUES ('"+customer.getUID()+"','"+customer.getFirstName()+"','"+customer.getLastName()+
-                "','"+customer.getBalance()+"','"+customer.getCreditLimit()+"','"+customer.getEmail()+"','"+customer.getTlf()+"','"+"123"+"')";
+                "',"+customer.getBalance()+","+customer.getCreditLimit()+",'"+customer.getEmail()+"','"+customer.getTlf()+"','"+"123"+"')";
         try (Connection con = DerbyDAOFactory.createConnection();
             PreparedStatement stmt = con.prepareStatement(sQLCommand, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);)
         {
@@ -463,7 +463,7 @@ public class ChargingDerbyDAO implements ChargingDAO
 
     public void editCustomerFromDB(Customer editCustomer) throws SQLException {
         String sQLCommand = "UPDATE CUSTOMERS SET FIRSTNAME = '"+editCustomer.getFirstName()+"',LASTNAME = '"+editCustomer.getLastName()+
-                "',BALANCE = '"+editCustomer.getBalance()+"',CREDITLIMIT = '"+editCustomer.getCreditLimit()+"',EMAIL = '"+editCustomer.getEmail()+
+                "',BALANCE = "+editCustomer.getBalance()+",CREDITLIMIT = "+editCustomer.getCreditLimit()+",EMAIL = '"+editCustomer.getEmail()+
                 "',TLF = '"+editCustomer.getTlf()+"' WHERE UID = '"+editCustomer.getUID()+"'";
         try (Connection con = DerbyDAOFactory.createConnection();
             PreparedStatement stmt = con.prepareStatement(sQLCommand, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);)
