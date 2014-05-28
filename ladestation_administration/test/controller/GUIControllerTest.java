@@ -11,7 +11,6 @@ import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import view.GUI;
 
 /**
  *
@@ -24,10 +23,7 @@ public class GUIControllerTest {
 
     @Before
     public void setUp() throws Exception {
-        GUIController instance = new GUIController();
-        //instance.editCustomer(new model.Customer("deleteMe", "for098u9", "ba0+9+09g", 100, 100, "1@2.6", "1345678", "134"), "add");
-        //instance.editCustomer(new model.Customer("getMe", "Gert", "me", 100, 100, "1@2.3", "12345678", "1234"), "add");
-        //instance.editCustomer(new model.Customer("editMe", "ding", "dong", 100, 100, "1@2.3", "12345678", "1234"), "add");
+        
     }
 
     @After
