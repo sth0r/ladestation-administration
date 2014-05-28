@@ -117,7 +117,7 @@ public class SerialFrame
         switch (event.getEventType())
         {
             case SerialPortEvent.DATA_AVAILABLE:
-                byte[] readBuffer = new byte[50];
+                byte[] readBuffer = new byte[100]; //50
                 int numBytes = 0;
                 int size = 0;
                 try
@@ -126,8 +126,8 @@ public class SerialFrame
                     {
                         numBytes = inputStream.read(readBuffer);
                         String str = new String(readBuffer);
-                        System.out.println("SF138. serialEvent string: " + str);
                         frame = frame + str.substring(0, numBytes);
+                        System.out.println("SF138. serial inputBuffer: " + str);
                     }
                     //char previousChar = '\u0000'; //initialize previous char
                     for (int i = 0; i < frame.length(); i++)
@@ -171,7 +171,7 @@ public class SerialFrame
         {
             outputStream = serialPort.getOutputStream();
             outputStream.write(str.getBytes());
-            System.out.println("SF172. Data send: " + str);
+            System.out.println("SF172. Data sendFrame: " + str);
         } catch (IOException e)
         {
             e.printStackTrace();

@@ -34,5 +34,5 @@ public interface ChargingDAO
     public double priceRequest(); // Return price
     public double balanceRequest(String costumerID); // Return balance
     // From Server to Charger
-    public void newTAID(String taID, String startTimeStamp, ResultSetTableModel receiver) throws java.sql.SQLException; // Save taID and startTime
+    public void newTAID(String taID, String startTimeStamp); // Save taID and startTime
 }

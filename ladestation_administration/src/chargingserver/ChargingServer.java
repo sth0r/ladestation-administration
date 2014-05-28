@@ -38,7 +38,7 @@ public class ChargingServer
     {
         try
         {
-            this.tranciever = new Transceiver("COM8", this);
+            this.tranciever = new Transceiver("COM22", this);
         } catch (TooManyListenersException ex)
         {
             Logger.getLogger(ChargingServer.class.getName()).log(Level.SEVERE, null, ex);
@@ -92,9 +92,8 @@ public class ChargingServer
         String cardUID = input.substring(DATA_START, DATA_START+COSTUMER_ID);
         boolean validateUIDResult;                 //result = Control if password matches pass string
         ChargingDAO chargingDAO = new ChargingDerbyDAO();
-        String customerUID = chargingDAO.findByUID(cardUID).getUID();
-        validateUIDResult= cardUID.equals(customerUID); //true-false
-
+        if (chargingDAO.findByUID(cardUID) == null) validateUIDResult = false;
+        else validateUIDResult = true;
         validateUIDReturnPack(client, validateUIDResult);
     }
     //%001LxxxUIDxxPASS
@@ -105,33 +104,38 @@ public class ChargingServer
         taID = String.format("%08d",nextTAID);
         nextTAID++;
         String client = input.substring(START_CHAR, START_CHAR+CLIENT_ID);
-        String user = input.substring(DATA_START, DATA_START+COSTUMER_ID);
+        String cardID = input.substring(DATA_START, DATA_START+COSTUMER_ID);
         String typedPassword = input.substring(DATA_START+COSTUMER_ID, DATA_START+COSTUMER_ID+PASSWORD_MAX);                
         ChargingDAO chargingDAO = new ChargingDerbyDAO();
-        String customerPassword = chargingDAO.login(user);
+        String customerPassword = chargingDAO.login(cardID);
         boolean passResult = typedPassword.equals(customerPassword);//result = Control if password matches pass string
-        
-        Customer customer = chargingDAO.findByUID(client);
-        boolean creditResult = true; 
-        //if (customer.getBalance()+customer.getCreditLimit() > 0) creditResult = true;
-        //else creditResult = false;
+        Calendar time = Calendar.getInstance();
+        String hrData = String.valueOf(time.get(Calendar.HOUR_OF_DAY));
+        String minData = String.valueOf(time.get(Calendar.MINUTE));
+        String secData = String.valueOf(time.get(Calendar.SECOND));
+        String timeStamp = hrData + minData + secData;
+        if (passResult) chargingDAO.newTAID(taID, timeStamp);
+        Customer customer = chargingDAO.findByUID(cardID);
+        boolean creditResult;
+        if (customer.getBalance()+customer.getCreditLimit() > 0) creditResult = true;
+        else creditResult = false;
         System.out.println("CS108. Login typed password\n" + typedPassword);
         System.out.println("CS108. Login return pass result\n" + passResult);
-        loginReturnPack(client, taID, user, passResult, creditResult);
+        loginReturnPack(client, taID, cardID, passResult, creditResult);
     }
 
     private void chargecharge(String input)
     {
         String client = input.substring(START_CHAR, START_CHAR+CLIENT_ID);
         String taIDReceived = input.substring(DATA_START, DATA_START+TAID);
-        String user = input.substring(DATA_START, DATA_START+COSTUMER_ID);
-        String kr = input.substring(DATA_START+COSTUMER_ID, DATA_START+COSTUMER_ID+CHARGE_KR);
-        String øre = input.substring(DATA_START+COSTUMER_ID+CHARGE_KR, DATA_START+COSTUMER_ID+CHARGE_KR+CHARGE_ØRE);
-        String time = input.substring(DATA_START+COSTUMER_ID+CHARGE_KR+CHARGE_ØRE, DATA_START+COSTUMER_ID+CHARGE_KR+CHARGE_ØRE+TIMESTAMP);
+        String user = input.substring(DATA_START+TAID, DATA_START+TAID+COSTUMER_ID);
+        String kr = input.substring(DATA_START+TAID+COSTUMER_ID, DATA_START+TAID+COSTUMER_ID+CHARGE_KR);
+        String øre = input.substring(DATA_START+TAID+COSTUMER_ID+CHARGE_KR, DATA_START+TAID+COSTUMER_ID+CHARGE_KR+CHARGE_ØRE);
+        String secondsCharged = input.substring(DATA_START+TAID+COSTUMER_ID+CHARGE_KR+CHARGE_ØRE, DATA_START+TAID+COSTUMER_ID+CHARGE_KR+CHARGE_ØRE+TIMESTAMP);
         ChargingDAO chargingDAO = new ChargingDerbyDAO();
         double price = Double.parseDouble(kr+'.'+øre);
         boolean chargeResult = taID.equals(taIDReceived);
-        chargingDAO.chargeEvent(taIDReceived, user, time, price);
+        chargingDAO.chargeEvent(taIDReceived, user, secondsCharged, price);
         chargeReturnPack(client, chargeResult);
     }
     

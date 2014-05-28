@@ -340,35 +340,31 @@ public class ChargingDerbyDAO implements ChargingDAO
     }
 
     @Override
-    public void chargeEvent(String taID, String costumerID, String stopTimeStamp, double price)
+    public void chargeEvent(String taID, String costumerID, String secondsCharged, double price)
     {
-        String sQLCommand = "UPDATE CHARGINGSTATS SET stopped = "+stopTimeStamp+", UID = "+costumerID+", WHERE TAID = '"+taID+"'";
+        String sQLCommand = "UPDATE CHARGINGSTATS SET SECONDSCHARGED = '"+secondsCharged+"', UID = '"+costumerID+"', PRICE = "+price+" WHERE TAID = '"+taID+"'";
 
         try (Connection con = DerbyDAOFactory.createConnection();
             PreparedStatement stmt = con.prepareStatement(sQLCommand, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);)
         {
-            ResultSet resultSet = stmt.executeQuery();
-            CachedRowSetImpl cachedRowSet = new CachedRowSetImpl();
-            cachedRowSet.populate(resultSet);
+            stmt.executeUpdate();
             con.close();
         }
         catch (SQLException e){
-            System.out.print("SQL Fail!" + e.getMessage());
+            System.out.print("SQL Fail! At chargeEvent" + e.getMessage());
         }
         
         double newprice = balanceRequest(costumerID) - price; //Burde måske ikke foregå i DAO
-        sQLCommand = "UPDATE COSTUMERS SET BALANCE = "+newprice+", WHERE UID = '"+costumerID+"'";
+        sQLCommand = "UPDATE CUSTOMERS SET BALANCE = "+newprice+" WHERE UID = '"+costumerID+"'";
         try (Connection con = DerbyDAOFactory.createConnection();
             PreparedStatement stmt = con.prepareStatement(sQLCommand, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);)
         {
-            ResultSet resultSet = stmt.executeQuery();
-            CachedRowSetImpl cachedRowSet = new CachedRowSetImpl();
-            cachedRowSet.populate(resultSet);
+            stmt.executeUpdate();
         }
-        catch (SQLException e){
-            System.out.print("SQL Fail!" + e.getMessage());
+        catch (SQLException e)
+        {
+            System.out.print("SQL Fail! At chargeEvent UPDATE BALANCE" + e.getMessage());
         }
-          
     }
 
     @Override
@@ -402,20 +398,18 @@ public class ChargingDerbyDAO implements ChargingDAO
     // From Server to Charger
 
     @Override
-    public void newTAID(String taID, String startTimeStamp, ResultSetTableModel receiver)
+    public void newTAID(String taID, String startTimeStamp)
     {
-        String sQLCommand = "INSERT INTO CHARGINGSTATS (TAID, started) VALUES ('"+ taID +"','" +startTimeStamp+"')";
+        String sQLCommand = "INSERT INTO CHARGINGSTATS (TAID, STARTED) VALUES ('"+ taID +"','" +startTimeStamp+"')";
         try (Connection con = DerbyDAOFactory.createConnection();
             PreparedStatement stmt = con.prepareStatement(sQLCommand, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);)
         {
-            ResultSet resultSet = stmt.executeQuery();
-            CachedRowSetImpl cachedRowSet = new CachedRowSetImpl();
-            cachedRowSet.populate(resultSet);
+            stmt.executeUpdate();
             con.close();
-            receiver.setRowSet(cachedRowSet);
         }
         catch (SQLException e)
         {
+            System.out.print("SQL Fail! At newTAID" + e.getMessage());
             e.printStackTrace();
         }
     }
