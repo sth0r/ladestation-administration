@@ -113,7 +113,7 @@ public class ChargingServer
         String hrData = String.valueOf(time.get(Calendar.HOUR_OF_DAY));
         String minData = String.valueOf(time.get(Calendar.MINUTE));
         String secData = String.valueOf(time.get(Calendar.SECOND));
-        String timeStamp = hrData + minData + secData;
+        String timeStamp = hrData+"-"+minData+"-"+secData;
         if (passResult) chargingDAO.newTAID(taID, timeStamp);
         Customer customer = chargingDAO.findByUID(cardID);
         boolean creditResult;
