@@ -1,13 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/*carcharger
+ * 
+ * Billing system for charging electric cars.
+ * 
+ * 2014 DTU
  */
 package DAO;
 
 import model.*;
 /**
  *
- * @author ibr
+ * @author Thim
  */
 public interface ChargingDAO
 {
@@ -21,9 +23,9 @@ public interface ChargingDAO
     public Customer findByCreditLimit(String creditLimit);
     public Customer findByEmail(String email);
     public Customer findByTlf(String tlf);
-    public void addCustomerToDB(Customer customer,ResultSetTableModel receiver) throws java.sql.SQLException;
-    public void editCustomerFromDB(String uID,ResultSetTableModel receiver) throws java.sql.SQLException;
-    public void deleteCustomerFromDB(String uID,ResultSetTableModel receiver) throws java.sql.SQLException;
+    public void addCustomerToDB(Customer customer) throws java.sql.SQLException;
+    public void editCustomerFromDB(Customer customer) throws java.sql.SQLException;
+    public void deleteCustomerFromDB(String uID) throws java.sql.SQLException;
     public void getCustomersTableFromDB(ResultSetTableModel receiver) throws java.sql.SQLException;
     public void getChargingstatsTableFromDB(ResultSetTableModel receiver) throws java.sql.SQLException;
     public Price priceRequestDB(); // Returns a priceModel from database
@@ -33,6 +35,6 @@ public interface ChargingDAO
     public void chargeEvent(String taID, String costumerID, String stopTimeStamp, double price);
     public double priceRequest(); // Return price
     public double balanceRequest(String costumerID); // Return balance
-    // From Server to Charger
+    // From Server to database
     public void newTAID(String taID, String startTimeStamp); // Save taID and startTime
 }

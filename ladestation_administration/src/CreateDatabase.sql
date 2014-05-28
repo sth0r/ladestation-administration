@@ -1,8 +1,17 @@
-/* To change password run command: call SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.user.Group9', '1234')*/
+/*carcharger
+ * 
+ * Billing system for charging electric cars.
+ * 
+ * 2014 DTU
+ */
+/* To change database password run command: call SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.user.Group9', '1234')*/
 DROP TABLE "CHARGINGSTATS";
 DROP TABLE "CUSTOMERS";
 DROP TABLE "PRICESES";
-
+/**
+ *
+ * @author Thim
+ */
 CREATE TABLE "CUSTOMERS" 
 (
     "UID" varchar (20),
@@ -28,9 +37,8 @@ CREATE TABLE "CHARGINGSTATS"
 
 CREATE TABLE "PRICESES" 
 (
-    "PLACE" varchar (30),
     "PRICE" double,
-   PRIMARY KEY ("PLACE")
+   PRIMARY KEY ("PRICE")
 );
 
 INSERT INTO "CUSTOMERS" ("UID","FIRSTNAME", "LASTNAME","BALANCE","CREDITLIMIT","EMAIL","TLF","PASSWORD")
@@ -42,10 +50,10 @@ VALUES
 
 INSERT INTO "CHARGINGSTATS" ("TAID","STARTED","SECONDSCHARGED","PRICE","UID")
 VALUES
-   ('90000000','2014-03-25 14:55:33','1',23,'F561A25C'),
-   ('91000000','2014-03-25 14:55:33','24',665,'F561A25C'),
-   ('91100000','2014-03-25 14:55:33','15',98,'F561A25C');
+   ('90000000','16-47-01','1',23,'F561A25C'),
+   ('91000000','12-47-51','24',665,'F561A25C'),
+   ('91100000','23-59-59','15',98,'F561A25C');
 
-INSERT INTO "PRICESES" ("PLACE","PRICE")
+INSERT INTO "PRICESES" ("PRICE")
 VALUES
-   ('Copenhagen',0.47);
+   (0.47);

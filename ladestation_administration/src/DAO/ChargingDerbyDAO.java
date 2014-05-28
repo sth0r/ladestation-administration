@@ -1,6 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/*carcharger
+ * 
+ * Billing system for charging electric cars.
+ * 
+ * 2014 DTU
  */
 package DAO;
 
@@ -16,11 +18,16 @@ import com.sun.rowset.CachedRowSetImpl;
 
 /**
  *
- * @author ibr
+ * @author Thim & Thor
  */
 public class ChargingDerbyDAO implements ChargingDAO
 {
 
+    /**
+     *
+     * @param uID
+     * @return The customer found by UID
+     */
     @Override
     public Customer findByUID(String uID)
     {
@@ -46,6 +53,11 @@ public class ChargingDerbyDAO implements ChargingDAO
         return null;
     }
 
+    /**
+     *
+     * @param taID
+     * @return The customer found by (transaction) taID
+     */
     @Override
     public ChargingStat findByTAID(String taID)
     {
@@ -70,6 +82,11 @@ public class ChargingDerbyDAO implements ChargingDAO
         }
         return null;
     }
+    /**
+     *
+     * @param firstName
+     * @return The customer found by first name
+     */
     @Override
     public Customer findByFirstName(String firstName)
     {
@@ -94,6 +111,11 @@ public class ChargingDerbyDAO implements ChargingDAO
         }
         return null;
     }
+    /**
+     * Finds all the users with the first name applied.
+     * @param firstName
+     * @param receiver
+     */
     @Override
     public void findByFirstNameTEST(String firstName, ResultSetTableModel receiver)
     {
@@ -117,6 +139,11 @@ public class ChargingDerbyDAO implements ChargingDAO
         }
     }
 
+    /**
+     *
+     * @param lastName
+     * @return The customer found by last name
+     */
     @Override
     public Customer findByLastName(String lastName)
     {
@@ -143,6 +170,11 @@ public class ChargingDerbyDAO implements ChargingDAO
         return null;
     }
 
+    /**
+     *
+     * @param balance
+     * @return The customer found by balance
+     */
     @Override
     public Customer findByBalance(String balance)
     {
@@ -168,6 +200,11 @@ public class ChargingDerbyDAO implements ChargingDAO
         return null;
     }
 
+    /**
+     *
+     * @param creditLimit
+     * @return The customer found by credit limit
+     */
     @Override
     public Customer findByCreditLimit(String creditLimit)
     {
@@ -193,6 +230,11 @@ public class ChargingDerbyDAO implements ChargingDAO
         return null;
     }
 
+    /**
+     *
+     * @param email
+     * @return The customer found by email
+     */
     @Override
     public Customer findByEmail(String email)
     {
@@ -218,6 +260,11 @@ public class ChargingDerbyDAO implements ChargingDAO
         return null;
     }
 
+    /**
+     *
+     * @param tlf
+     * @return The customer found by telephone number
+     */
     @Override
     public Customer findByTlf(String tlf)
     {
@@ -242,67 +289,12 @@ public class ChargingDerbyDAO implements ChargingDAO
         }
         return null;
     }
-    @Override
-    public void addCustomerToDB(Customer customer, ResultSetTableModel receiver)
-    {
-        String sQLCommand = "INSERT INTO CUSTOMERS (UID,firstName,lastName,balance,creditLimit,email,tlf)"
-                + "VALUES ('"+customer.getUID()+"','"+customer.getFirstName()+"','"+customer.getLastName()+
-                "','"+customer.getBalance()+"','"+customer.getCreditLimit()+"','"+customer.getEmail()+"','"+customer.getTlf()+"')";
-        
-        try (Connection con = DerbyDAOFactory.createConnection();
-            PreparedStatement stmt = con.prepareStatement(sQLCommand, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);)
-        {
-            ResultSet resultSet = stmt.executeQuery();
-            CachedRowSetImpl cachedRowSet = new CachedRowSetImpl();
-            cachedRowSet.populate(resultSet);
-            con.close();
-            receiver.setRowSet(cachedRowSet);
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }        
-    }
-    
-    @Override
-    public void editCustomerFromDB(String uID,ResultSetTableModel receiver)
-    {
-        Customer editCustomer = findByUID(uID);
-        String sQLCommand = "UPDATE CUSTOMERS SET firstName = "+editCustomer.getFirstName()+",lastName = "+editCustomer.getLastName()+
-                ",balance = "+editCustomer.getBalance()+",creditLimit = "+editCustomer.getCreditLimit()+",email = "+editCustomer.getEmail()+
-                ",tlf = "+editCustomer.getTlf()+", WHERE UID = '"+uID+"'";
-        try (Connection con = DerbyDAOFactory.createConnection();
-            PreparedStatement stmt = con.prepareStatement(sQLCommand, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);)
-        {
-            ResultSet resultSet = stmt.executeQuery();
-            CachedRowSetImpl cachedRowSet = new CachedRowSetImpl();
-            cachedRowSet.populate(resultSet);
-            con.close();
-            receiver.setRowSet(cachedRowSet);
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-    }
-    @Override
-    public void deleteCustomerFromDB(String uID, ResultSetTableModel receiver)
-    {
-        String sQLCommand = "DELETE FROM CUSTOMERS WHERE UID = '"+uID+"'";
-        try (Connection con = DerbyDAOFactory.createConnection();
-            PreparedStatement stmt = con.prepareStatement(sQLCommand, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);)
-        {
-            ResultSet resultSet = stmt.executeQuery();
-            CachedRowSetImpl cachedRowSet = new CachedRowSetImpl();
-            cachedRowSet.populate(resultSet);
-            con.close();
-            receiver.setRowSet(cachedRowSet);
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-    }
+
+    /**
+     * Gets all customers from database
+     * @param receiver
+     * @throws SQLException
+     */
     @Override
     public void getCustomersTableFromDB(ResultSetTableModel receiver) throws SQLException
     {    
@@ -317,6 +309,11 @@ public class ChargingDerbyDAO implements ChargingDAO
             receiver.setRowSet(cachedRowSet);
         }
     }
+    /**
+     * Gets all charging statistics from database
+     * @param receiver
+     * @throws SQLException
+     */
     @Override
     public void getChargingstatsTableFromDB(ResultSetTableModel receiver) throws SQLException
     {
@@ -331,14 +328,25 @@ public class ChargingDerbyDAO implements ChargingDAO
             receiver.setRowSet(cachedRowSet);
         }
     }
-    // From Charger to Server
 
+    /**
+     *
+     * @param costumerID
+     * @return The password from the customer ID supplied
+     */
     @Override
     public String login(String costumerID) // Find the password that matches the costumerID and return it
     {
         return findByUID(costumerID).getPassword();
     }
 
+    /**
+     * Updates the database with the charging information supplied
+     * @param taID
+     * @param costumerID
+     * @param secondsCharged
+     * @param price
+     */
     @Override
     public void chargeEvent(String taID, String costumerID, String secondsCharged, double price)
     {
@@ -354,7 +362,7 @@ public class ChargingDerbyDAO implements ChargingDAO
             System.out.print("SQL Fail! At chargeEvent" + e.getMessage());
         }
         
-        double newprice = balanceRequest(costumerID) - price; //Burde måske ikke foregå i DAO
+        double newprice = balanceRequest(costumerID) - price; //Udregning burde måske ikke foregå i DAO-klassen
         sQLCommand = "UPDATE CUSTOMERS SET BALANCE = "+newprice+" WHERE UID = '"+costumerID+"'";
         try (Connection con = DerbyDAOFactory.createConnection();
             PreparedStatement stmt = con.prepareStatement(sQLCommand, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);)
@@ -367,11 +375,15 @@ public class ChargingDerbyDAO implements ChargingDAO
         }
     }
 
+    /**
+     *
+     * @return A Price object from the database
+     */
     @Override
     public Price priceRequestDB()
     {
         try (Connection con = DerbyDAOFactory.createConnection();
-            PreparedStatement stmt = con.prepareStatement("SELECT PRICE FROM PRICESES WHERE PLACE = 'Copenhagen'", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);)
+            PreparedStatement stmt = con.prepareStatement("SELECT PRICE FROM PRICESES", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);)
         {
             ResultSet resultSet = stmt.executeQuery();
             Price price = createPriceModel(resultSet);
@@ -384,19 +396,31 @@ public class ChargingDerbyDAO implements ChargingDAO
         return null;
     }
     
+    /**
+     *
+     * @return The price from the database
+     */
     @Override
     public double priceRequest()
     {
         return priceRequestDB().getPrice();
     }
+    /**
+     *
+     * @param costumerID
+     * @return The supplied customers balance
+     */
     @Override
     public double balanceRequest(String costumerID)
     {
         return findByUID(costumerID).getBalance();
     }
-    
-    // From Server to Charger
 
+    /**
+     * Inserts the supplied transaction ID and start time into database
+     * @param taID
+     * @param startTimeStamp
+     */
     @Override
     public void newTAID(String taID, String startTimeStamp)
     {
@@ -443,6 +467,12 @@ public class ChargingDerbyDAO implements ChargingDAO
         return new Price(price);
     }
 
+    /**
+     * Inserts the supplied customer into database
+     * @param customer
+     * @throws SQLException
+     */
+    @Override
     public void addCustomerToDB(Customer customer) throws SQLException {
         String sQLCommand = "INSERT INTO CUSTOMERS (UID,FIRSTNAME,LASTNAME,BALANCE,CREDITLIMIT,EMAIL,TLF,PASSWORD)"
                 + "VALUES ('"+customer.getUID()+"','"+customer.getFirstName()+"','"+customer.getLastName()+
@@ -455,6 +485,12 @@ public class ChargingDerbyDAO implements ChargingDAO
         }
     }
 
+    /**
+     * Updates the customer supplied into the database
+     * @param editCustomer
+     * @throws SQLException
+     */
+    @Override
     public void editCustomerFromDB(Customer editCustomer) throws SQLException {
         String sQLCommand = "UPDATE CUSTOMERS SET FIRSTNAME = '"+editCustomer.getFirstName()+"',LASTNAME = '"+editCustomer.getLastName()+
                 "',BALANCE = "+editCustomer.getBalance()+",CREDITLIMIT = "+editCustomer.getCreditLimit()+",EMAIL = '"+editCustomer.getEmail()+
@@ -467,6 +503,12 @@ public class ChargingDerbyDAO implements ChargingDAO
         }
     }
 
+    /**
+     * Deletes the customer whos uID supplied
+     * @param uID
+     * @throws SQLException
+     */
+    @Override
     public void deleteCustomerFromDB(String uID) throws SQLException 
     {
         String sQLCommand = "DELETE FROM CUSTOMERS WHERE UID = '"+uID+"'";

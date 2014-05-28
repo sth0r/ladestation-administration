@@ -1,5 +1,10 @@
+/*carcharger
+ * 
+ * Billing system for charging electric cars.
+ * 
+ * 2014 DTU
+ */
 package model;
-
 import javax.swing.table.DefaultTableModel;
 
 /**

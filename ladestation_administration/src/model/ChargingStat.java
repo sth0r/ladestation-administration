@@ -1,12 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/*carcharger
+ * 
+ * Billing system for charging electric cars.
+ * 
+ * 2014 DTU
  */
 package model;
 
 /**
  *
- * @author T
+ * @author Thim
  */
 public class ChargingStat
 {
