@@ -98,8 +98,6 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         chargingStatsTabel = new javax.swing.JTable();
         chargingStatsRefresh = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        testcem = new javax.swing.JButton();
 
         editDialogIDLabel1.setText("ID:");
 
@@ -449,32 +447,6 @@ public class GUI extends javax.swing.JFrame {
 
         Customer_info_tab.addTab("Charging stats", jPanel2);
 
-        testcem.setText("test af customerErrorMsg(String msg)");
-        testcem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                testcemActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(testcem)
-                .addContainerGap(543, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(testcem)
-                .addContainerGap(584, Short.MAX_VALUE))
-        );
-
-        Customer_info_tab.addTab("test_tab", jPanel3);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -530,14 +502,6 @@ public class GUI extends javax.swing.JFrame {
         balanceDialog.setVisible(false); //gør balanceDialog usynelig.
         controller.getAllCustomers(ltm); //updatere ltm med alle kunderne.
     }//GEN-LAST:event_balanceOkButtonActionPerformed
-
-     /**
-     * to be deleted
-     */
-    private void testcemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testcemActionPerformed
-        // TODO add your handling code here:
-        customerErrorMsg("hej");
-    }//GEN-LAST:event_testcemActionPerformed
 
      /**
      * knap til at hente charging stats fra databasen. 
@@ -735,11 +699,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton testcem;
     // End of variables declaration//GEN-END:variables
 
     /**
